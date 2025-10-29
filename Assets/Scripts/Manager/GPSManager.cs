@@ -4,22 +4,38 @@ using UnityEngine;
 public class GPSManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public static GPSManager instance;
-
+    private static GPSManager _instance;
+    public static GPSManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject go = new GameObject("GPSManager");
+                _instance = go.AddComponent<GPSManager>();
+                DontDestroyOnLoad(go);
+            }
+            return _instance;
+        }
+    }
     public void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            _instance = this;
         }
     }
     public float latitude;
     public float longitude;
     void Start()
+    {
+        getLocationRequest();    
+    }
+    public void getLocationRequest()
     {
         StartCoroutine(GetLocation());
     }
@@ -27,6 +43,7 @@ public class GPSManager : MonoBehaviour
     public IEnumerator GetLocation()
     {
         print("Getting Location...");
+        
         // Uncomment if you want to test with Unity Remote
         
 #if UNITY_EDITOR
@@ -102,7 +119,16 @@ public class GPSManager : MonoBehaviour
             latitude = (float)UnityEngine.Input.location.lastData.latitude;
             longitude = (float)UnityEngine.Input.location.lastData.longitude;
             print(latitude.ToString() + ", " + longitude.ToString());
-            // TODO success do something with location
+            
+            // 發布 GPS 位置獲取成功事件
+            GPSRecievedEvent locationData = new GPSRecievedEvent(
+                latitude, 
+                longitude, 
+                UnityEngine.Input.location.lastData.altitude,
+                UnityEngine.Input.location.lastData.horizontalAccuracy,
+                UnityEngine.Input.location.lastData.timestamp
+            );
+            EventBus.Instance.Publish(locationData);
         }
 
         // stop
