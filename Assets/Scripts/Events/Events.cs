@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -22,5 +23,14 @@ public class GPSRecievedEvent
     public override string ToString()
     {
         return $"GPS位置: ({latitude:F6}, {longitude:F6}), 海拔: {altitude}, 精確度: {horizontalAccuracy}";
+    }
+}
+
+public class RestaurantDataReceivedEvent
+{
+    List<PlaceModel> places;
+    public RestaurantDataReceivedEvent(List<PlaceModel> placeList)
+    {
+        places = placeList;
     }
 }

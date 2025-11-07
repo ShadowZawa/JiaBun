@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     }
     void updateGPSButton(GPSRecievedEvent data){
         gpsButton.GetComponentInChildren<TextMeshProUGUI>().text = $"定位完成";
-
+       
     }
     void onClickGPS(){
         gpsButton.GetComponentInChildren<TextMeshProUGUI>().text = "定位中...";

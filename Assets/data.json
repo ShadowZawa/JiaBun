@@ -1,0 +1,31 @@
+{
+    "places": [
+        {
+            "displayName": "順億鮪魚專賣店 - 漁港門市",
+            "rating": 4.2,
+            "googleMapsUri": "https://maps.google.com/?cid=12740574938048336942&g_mp=Cilnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaE5lYXJieRACGAQgAA",
+            "openNow": true,
+            "startPrice": "400",
+            "endPrice": "600",
+            "currencyCode": "TWD"
+        },
+        {
+            "displayName": "前鎭船員會館餐廳",
+            "rating": null,
+            "googleMapsUri": "https://maps.google.com/?cid=16039416996842196426&g_mp=Cilnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaE5lYXJieRACGAQgAA",
+            "openNow": null,
+            "startPrice": null,
+            "endPrice": null,
+            "currencyCode": null
+        },
+        {
+            "displayName": "漁港賣便當的 !!",
+            "rating": null,
+            "googleMapsUri": "https://maps.google.com/?cid=11446042070076896768&g_mp=Cilnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaE5lYXJieRACGAQgAA",
+            "openNow": null,
+            "startPrice": null,
+            "endPrice": null,
+            "currencyCode": null
+        }
+    ]
+}
