@@ -28,9 +28,17 @@ public class GPSRecievedEvent
 
 public class RestaurantDataReceivedEvent
 {
-    List<PlaceModel> places;
-    public RestaurantDataReceivedEvent(List<PlaceModel> placeList)
+    public RequestPlacesModel places;
+    public RestaurantDataReceivedEvent(RequestPlacesModel model)
     {
-        places = placeList;
+        places = model;
+    }
+}
+public class RestaurantConversationRecievedEvent
+{
+    public ConversationResponseModel conversation;
+    public RestaurantConversationRecievedEvent(ConversationResponseModel model)
+    {
+        conversation = model;
     }
 }

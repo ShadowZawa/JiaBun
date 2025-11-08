@@ -31,6 +31,7 @@ public class GPSManager : MonoBehaviour
     }
     public float latitude;
     public float longitude;
+    public bool is_locating = false;
     void Start()
     {
         getLocationRequest();    
@@ -43,7 +44,8 @@ public class GPSManager : MonoBehaviour
     public IEnumerator GetLocation()
     {
         print("Getting Location...");
-        
+        is_locating = true;
+
         // Uncomment if you want to test with Unity Remote
         
 #if UNITY_EDITOR
@@ -130,7 +132,7 @@ public class GPSManager : MonoBehaviour
             );
             EventBus.Instance.Publish(locationData);
         }
-
+        is_locating = false;
         // stop
         UnityEngine.Input.location.Stop();
     }

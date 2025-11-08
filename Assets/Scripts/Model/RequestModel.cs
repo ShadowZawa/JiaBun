@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 
 /// <summary>
@@ -81,4 +79,53 @@ public class PlaceModel
         
         return "無評分";
     }
+}
+
+/// <summary>
+/// AI 對話請求的資料模型
+/// </summary>
+[System.Serializable]
+public class ConversationRequestModel
+{
+    public string PreviousData;
+    public List<ConversationChoice> choice;
+}
+
+/// <summary>
+/// AI 對話請求中的單一選項
+/// </summary>
+[System.Serializable]
+public class ConversationChoice
+{
+    public string ID;
+    public string displayName;
+    public float? rating;
+    public string priceLevel;
+    public bool? openNow;
+
+    /// <summary>
+    /// 從 PlaceModel 建立 ConversationChoice
+    /// </summary>
+    public static ConversationChoice FromPlaceModel(PlaceModel place, int id)
+    {
+        return new ConversationChoice
+        {
+            ID = id.ToString(),
+            displayName = place.displayName,
+            rating = place.rating,
+            priceLevel = place.GetPriceRangeText(),
+            openNow = place.openNow
+        };
+    }
+}
+
+/// <summary>
+/// AI 對話回應的資料模型
+/// </summary>
+[System.Serializable]
+public class ConversationResponseModel
+{
+    public string newData;
+    public string resultIndex;
+    public string resultConversation;
 }

@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class RequestManager : MonoBehaviour
 {
     private static RequestManager _instance;
@@ -64,12 +65,6 @@ public class RequestManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        // 測試用：啟動時自動取得餐廳資料
-        // getRestaurant(22.5666278f, 120.3068823f);
-    }
-
     /// <summary>
     /// 根據經緯度取得附近的餐廳
     /// </summary>
@@ -79,16 +74,117 @@ public class RequestManager : MonoBehaviour
     public void getRestaurant(float latitude, float longitude, int radius = 1000)
     {
         StartCoroutine(GetRestaurantCoroutine(latitude, longitude, radius));
+        /*RequestPlacesModel testModel = new RequestPlacesModel
+        {
+            places = new List<PlaceModel>{
+                new PlaceModel
+                {
+                    displayName = "測試餐廳 A",
+                    rating = 4.5f,
+                    googleMapsUri = "https://maps.google.com/?q=Test+Restaurant+A",
+                    openNow = true,
+                    startPrice = "10",
+                    endPrice = "50",
+                    currencyCode = "TWD"
+                },
+                new PlaceModel
+                {
+                    displayName = "測試餐廳 B",
+                    rating = 4.0f,
+                    googleMapsUri = "https://maps.google.com/?q=Test+Restaurant+B",
+                    openNow = false,
+                    startPrice = "20",
+                    endPrice = "100",
+                    currencyCode = "TWD"
+                }
+            }
+        };
+        currentPlacesData = testModel;
+        EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(testModel));
+        */
     }
-    
+
+    /// <summary>
+    /// 向 AI 發送對話請求，取得餐廳推薦
+    /// </summary>
+    /// <param name="model">餐廳資料模型</param>
+    /// <param name="previousData">先前的對話資料（可選）</param>
+    public void getRestaurantConversation(RequestPlacesModel model, string previousData = "")
+    {
+        StartCoroutine(GetRestaurantConversationCoroutine(model, previousData));
+    }
+
+    public IEnumerator GetRestaurantConversationCoroutine(RequestPlacesModel model, string previousData = "")
+    {
+        
+
+        // 建立對話請求資料
+        ConversationRequestModel requestData = new ConversationRequestModel
+        {
+            PreviousData = previousData,
+            choice = new List<ConversationChoice>()
+        };
+
+        // 轉換餐廳資料為對話選項格式
+        if (model?.places != null)
+        {
+            for (int i = 0; i < model.places.Count; i++)
+            {
+                ConversationChoice choice = new ConversationChoice
+                {
+                    ID = $"choice{i + 1}",
+                    displayName = model.places[i].displayName
+                };
+                requestData.choice.Add(choice);
+            }
+        }
+
+        string jsonData = JsonUtility.ToJson(requestData);
+        UnityWebRequest request = new UnityWebRequest("https://twswapi.cloudns.nz:2096/api/conversation/", "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.SendWebRequest();
+
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string responseData = request.downloadHandler.text;
+            Debug.Log($"[RequestManager] AI 對話回應成功: {responseData}");
+
+            try
+            {
+                ConversationResponseModel response = JsonUtility.FromJson<ConversationResponseModel>(responseData);
+                if (response != null)
+                {
+                    Debug.Log($"[RequestManager] AI 推薦餐廳 Index: {response.resultIndex}");
+                    Debug.Log($"[RequestManager] AI 回應: {response.resultConversation}");
+                    Debug.Log($"[RequestManager] 新的對話資料: {response.newData}");
+                    EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response));
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[RequestManager] 對話回應解析失敗: {ex.Message}");
+            }
+        }
+        else
+        {
+            Debug.LogError($"[RequestManager] AI 對話請求失敗: {request.error}");
+            Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
+        }
+
+        request.Dispose();
+    }
+
     private IEnumerator GetRestaurantCoroutine(float latitude, float longitude, int radius)
     {
-        string url = $"https://twswapi.cloudns.nz:3002/api/getnearby/?latitude={latitude}&longitude={longitude}&radius={radius}";
+        string url = $"https://twswapi.cloudns.nz:2096/api/getnearby/?latitude={latitude}&longitude={longitude}&radius={radius}";
         Debug.Log($"[RequestManager] 正在請求餐廳資料: {url}");
 
-        UnityWebRequest request = UnityWebRequest.Get(url);
+        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
         yield return request.SendWebRequest();
-        
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonData = request.downloadHandler.text;
@@ -107,7 +203,7 @@ public class RequestManager : MonoBehaviour
                     LogPlacesInfo();
                     
                     // 發布事件通知其他組件
-                    EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(currentPlacesData.places));
+                    EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(currentPlacesData));
                 }
                 else
                 {
