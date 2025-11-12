@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager.Requests;
 
 public class ChatManager : MonoBehaviour
 {
@@ -14,9 +13,12 @@ public class ChatManager : MonoBehaviour
     public Button sendButton;
 
     [Header("訊息尺寸設定")]
-    public float baseItemHeight = 80f; // 基礎訊息高度
-    public float lineHeight = 30f; // 每行文字的高度
+    public float baseItemHeight = 20f; // 基礎訊息高度（padding等）
+    public float lineHeight = 42f; // 每行文字的高度
     public float itemSpacing = 10f; // 訊息之間的間距
+    public float bottomPadding = 20f; // Content 底部額外邊距
+    public float topOffset = 50f; // 第一則訊息的起始 Y 位置
+    public float contentHeightScale = 0.74f; // Content 高度縮放比例 (4000/5420 ≈ 0.74)
 
     [Header("訊息位置設定")]
     public float userMessageXPosition = 160f; // 使用者訊息的 X 位置（靠右）
@@ -99,8 +101,20 @@ public class ChatManager : MonoBehaviour
             return;
         }
 
+        // 先計算當前的Y位置（在實例化之前）
+        int currentIndex = contentTransform.childCount;
+        float yPos = CalculateTotalHeightBeforeIndex(currentIndex);
+
         GameObject chatItem = Instantiate(chatItemPrefab, contentTransform);
         RectTransform itemRect = chatItem.GetComponent<RectTransform>();
+        
+        // 設定錨點為頂部拉伸（左上到右上）
+        if (itemRect != null)
+        {
+            itemRect.anchorMin = new Vector2(0.5f, 1);
+            itemRect.anchorMax = new Vector2(0.5f, 1);
+            itemRect.pivot = new Vector2(0.5f, 0.5f);
+        }
         
         // 設定訊息文字
         TextMeshProUGUI messageText = chatItem.GetComponentInChildren<TextMeshProUGUI>();
@@ -119,15 +133,13 @@ public class ChatManager : MonoBehaviour
             float itemHeight = CalculateItemHeight(lineCount);
             AdjustItemSize(chatItem, itemHeight);
             
-            // 設定位置：使用者訊息靠右 (x = 160)，Y 軸累加向下
+            // 設定位置：使用者訊息靠右 (x = 400)，Y 軸從 0 開始向下
             if (itemRect != null)
             {
-                // 計算Y位置：使用固定間距，避免前一句行數影響
-                float yPos = CalculateTotalHeightBeforeIndex(contentTransform.childCount - 1);
                 itemRect.anchoredPosition = new Vector2(userMessageXPosition, -yPos);
             }
-            
-            Debug.Log($"[ChatManager] 創建使用者訊息: {message} (行數: {lineCount}, 高度: {itemHeight})");
+
+            Debug.Log($"[ChatManager] 創建使用者訊息: {message} (索引: {currentIndex}, 行數: {lineCount}, 高度: {itemHeight}, Y位置: {yPos})");
         }
 
         // 更新 Content 高度
@@ -180,8 +192,21 @@ public class ChatManager : MonoBehaviour
     /// </summary>
     private void CreateSingleReplyItem(string reply)
     {
+        // 先計算當前的Y位置（在實例化之前）
+        int currentIndex = contentTransform.childCount;
+        float yPos = CalculateTotalHeightBeforeIndex(currentIndex);
+
         GameObject replyItem = Instantiate(replyItemPrefab, contentTransform);
         RectTransform itemRect = replyItem.GetComponent<RectTransform>();
+        
+        // 設定錨點為頂部拉伸（左上到右上）
+        if (itemRect != null)
+        {
+            itemRect.anchorMin = new Vector2(0.5f, 1);
+            itemRect.anchorMax = new Vector2(0.5f, 1);
+            itemRect.pivot = new Vector2(0.5f, 0.5f);
+        }
+
         
         // 設定回覆文字
         TextMeshProUGUI replyText = replyItem.GetComponentInChildren<TextMeshProUGUI>();
@@ -200,15 +225,13 @@ public class ChatManager : MonoBehaviour
             float itemHeight = CalculateItemHeight(lineCount);
             AdjustItemSize(replyItem, itemHeight);
             
-            // 設定位置：AI 回覆靠左 (x = -160)，Y 軸累加向下
+            // 設定位置：AI 回覆靠左 (x = 40)，Y 軸從 0 開始向下
             if (itemRect != null)
             {
-                // 計算Y位置：使用固定間距，避免前一句行數影響
-                float yPos = CalculateTotalHeightBeforeIndex(contentTransform.childCount - 1);
                 itemRect.anchoredPosition = new Vector2(replyMessageXPosition, -yPos);
             }
-            
-            Debug.Log($"[ChatManager] 創建 AI 回覆: {reply} (行數: {lineCount}, 高度: {itemHeight})");
+
+            Debug.Log($"[ChatManager] 創建 AI 回覆: {reply} (索引: {currentIndex}, 行數: {lineCount}, 高度: {itemHeight}, Y位置: {yPos})");
         }
     }
 
@@ -226,9 +249,9 @@ public class ChatManager : MonoBehaviour
     /// </summary>
     private float CalculateTotalHeightBeforeIndex(int index)
     {
-        if (contentTransform == null || index < 0) return 0f;
+        if (contentTransform == null || index < 0) return topOffset;
         
-        float totalHeight = 0f;
+        float totalHeight = topOffset; // 從 topOffset 開始
         
         for (int i = 0; i < index; i++)
         {
@@ -267,7 +290,7 @@ public class ChatManager : MonoBehaviour
     {
         if (contentTransform == null) return;
 
-        float totalHeight = 0f;
+        float totalHeight = topOffset; // 從 topOffset 開始
         int childCount = contentTransform.childCount;
 
         // 計算所有子物件的總高度
@@ -286,16 +309,22 @@ public class ChatManager : MonoBehaviour
             }
         }
 
-        // 更新 Content 的高度
+        // 加上底部邊距
+        if (childCount > 0)
+        {
+            totalHeight += bottomPadding;
+        }
+
+        // 更新 Content 的高度 - 套用縮放比例
         RectTransform contentRect = contentTransform.GetComponent<RectTransform>();
         if (contentRect != null)
         {
             Vector2 sizeDelta = contentRect.sizeDelta;
-            sizeDelta.y = totalHeight;
+            sizeDelta.y = totalHeight * contentHeightScale;
             contentRect.sizeDelta = sizeDelta;
             
-            totalContentHeight = totalHeight;
-            Debug.Log($"[ChatManager] Content 高度已更新: {totalHeight}");
+            totalContentHeight = totalHeight * contentHeightScale;
+            Debug.Log($"[ChatManager] Content 高度已更新: {totalHeight * contentHeightScale} (原始: {totalHeight}, 子物件數: {childCount})");
         }
     }
 

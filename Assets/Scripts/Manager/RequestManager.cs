@@ -93,6 +93,7 @@ public class RequestManager : MonoBehaviour
             }
             catch (System.Exception ex)
             {
+                //MessageBox.Show($"與伺服器連接失敗 請重試");
                 Debug.LogError($"[RequestManager] 聊天回應解析失敗: {ex.Message}");
             }
         }

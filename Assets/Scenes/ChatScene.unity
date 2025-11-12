@@ -480,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00061035156}
-  m_SizeDelta: {x: 28.442, y: -1190.031}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &864612488 stripped
 RectTransform:
@@ -632,7 +632,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1142854118
 MonoBehaviour:
@@ -767,7 +767,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1254379672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1338375054}
+        m_TargetAssemblyTypeName: ChatSceneView, Assembly-CSharp
+        m_MethodName: onClickBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1254379672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +831,7 @@ GameObject:
   - component: {fileID: 1338375049}
   - component: {fileID: 1338375053}
   - component: {fileID: 1338375052}
+  - component: {fileID: 1338375054}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -917,9 +930,12 @@ MonoBehaviour:
   contentTransform: {fileID: 812012456}
   messageInputField: {fileID: 286768803}
   sendButton: {fileID: 0}
-  baseItemHeight: 60
-  lineHeight: 60
+  baseItemHeight: 80
+  lineHeight: 50
   itemSpacing: 60
+  bottomPadding: 200
+  topOffset: 100
+  contentHeightScale: 0.74
   userMessageXPosition: 160
   replyMessageXPosition: -160
   saveFileName: chat_history.json
@@ -967,6 +983,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1338375054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338375048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18933fbc80315d64b8fd4a978d808338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChatSceneView
 --- !u!1 &1470211274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +1886,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1312822776244907393, guid: 8c70a8885e4e30a478f18f3c3c36b43d, type: 3}
+    - target: {fileID: 3438526251786859230, guid: bad6868d5631da04d8692006cdc35624, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2.991
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438526251786859230, guid: bad6868d5631da04d8692006cdc35624, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10.632
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438526251786859230, guid: bad6868d5631da04d8692006cdc35624, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9.968
+      objectReference: {fileID: 0}
     - target: {fileID: 5688077981024632986, guid: bad6868d5631da04d8692006cdc35624, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1938,6 +1978,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6734546242353789394, guid: bad6868d5631da04d8692006cdc35624, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 9014113909897427916, guid: bad6868d5631da04d8692006cdc35624, type: 3}
       propertyPath: m_Name
       value: ChatBox
@@ -1958,6 +2002,22 @@ PrefabInstance:
     - target: {fileID: 4565553924964711391, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
       propertyPath: m_Name
       value: ReplyBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324194513233640747, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2.991
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324194513233640747, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14.356
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324194513233640747, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864495938365527288, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8908153616632294826, guid: b9dcb95b853e18b4db76f85e8a931e60, type: 3}
       propertyPath: m_Pivot.x
