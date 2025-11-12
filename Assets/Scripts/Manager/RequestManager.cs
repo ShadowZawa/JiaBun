@@ -21,6 +21,92 @@ public class RequestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 發送聊天對話請求
+    /// </summary>
+    /// <param name="message">使用者訊息</param>
+    /// <param name="summary">對話摘要</param>
+    /// <param name="messageHistory">訊息歷史</param>
+    public bool is_thinking = false;
+    public void SendChatConversation(string message, string summary, List<MessageModel> messageHistory, string character = "")
+    {
+        if (is_thinking) return;
+        StartCoroutine(ConversationRequestCoroutine(message, summary, messageHistory, character));
+    }
+
+    public IEnumerator ConversationRequestCoroutine(string msg, string summary, List<MessageModel> messageHistory, string character = "")
+    {
+        string url = "https://twswapi.cloudns.nz:2096/api/conversation";
+        if (character != "")
+        {
+            url += $"?character={UnityWebRequest.EscapeURL(character)}";
+        }
+        Debug.Log($"[RequestManager] 正在請求聊天對話: {url}");
+
+        // 建立對話請求資料
+        ChatConversationRequestModel requestData = new ChatConversationRequestModel
+        {
+            summary = summary ?? "",
+            message_history = new List<ChatMessageModel>(),
+            message = msg
+        };
+
+        // 轉換訊息歷史
+        if (messageHistory != null)
+        {
+            foreach (MessageModel msgModel in messageHistory)
+            {
+                requestData.message_history.Add(ChatMessageModel.FromMessageModel(msgModel));
+            }
+        }
+
+        // 序列化為 JSON
+        string jsonData = JsonUtility.ToJson(requestData);
+        Debug.Log($"[RequestManager] 發送的 JSON 資料: {jsonData}");
+
+        // 創建 POST 請求
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+        
+        yield return request.SendWebRequest();
+        is_thinking = false;
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string responseData = request.downloadHandler.text;
+            Debug.Log($"[RequestManager] 聊天對話回應成功: {responseData}");
+
+            try
+            {
+                ChatConversationResponseModel response = JsonUtility.FromJson<ChatConversationResponseModel>(responseData);
+                
+                if (response != null)
+                {
+                    Debug.Log($"[RequestManager] AI 回覆: {response.reply}");
+                    Debug.Log($"[RequestManager] 更新後的摘要: {response.summary}");
+                    
+                    // 發布聊天回應事件
+                    EventBus.Instance.Publish<ChatConversationReceivedEvent>(new ChatConversationReceivedEvent(response));
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[RequestManager] 聊天回應解析失敗: {ex.Message}");
+            }
+        }
+        else
+        {
+            Debug.LogError($"[RequestManager] 聊天對話請求失敗: {request.error}");
+            Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
+        }
+
+        request.Dispose();
+    }
+
+
+
     // 儲存當前的餐廳資料
     private RequestPlacesModel currentPlacesData;
     

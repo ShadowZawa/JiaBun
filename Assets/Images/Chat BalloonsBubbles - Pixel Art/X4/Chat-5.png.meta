@@ -1,0 +1,1638 @@
+fileFormatVersion: 2
+guid: 6fbb412f9a8e3d0489b717cc4266c4fc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8629364562803802778
+    second: Chat-5_0
+  - first:
+      213: -4391081893789356121
+    second: Chat-5_1
+  - first:
+      213: 9030154758306832024
+    second: Chat-5_2
+  - first:
+      213: -2480777596920359929
+    second: Chat-5_3
+  - first:
+      213: -419752207521393725
+    second: Chat-5_4
+  - first:
+      213: 3701157842532379358
+    second: Chat-5_5
+  - first:
+      213: 1093673774794835598
+    second: Chat-5_6
+  - first:
+      213: 3566487481407347233
+    second: Chat-5_7
+  - first:
+      213: 1284464478400618269
+    second: Chat-5_8
+  - first:
+      213: -7443896198392626626
+    second: Chat-5_9
+  - first:
+      213: 1222065918049674305
+    second: Chat-5_10
+  - first:
+      213: -533692837071185008
+    second: Chat-5_11
+  - first:
+      213: 1527171278583668803
+    second: Chat-5_12
+  - first:
+      213: -1202365509910473625
+    second: Chat-5_13
+  - first:
+      213: 9176749516098429363
+    second: Chat-5_14
+  - first:
+      213: -9150917782016831486
+    second: Chat-5_15
+  - first:
+      213: -1309447318890080152
+    second: Chat-5_16
+  - first:
+      213: 2676157510728278377
+    second: Chat-5_17
+  - first:
+      213: 1949784808526040873
+    second: Chat-5_18
+  - first:
+      213: 737025752132104799
+    second: Chat-5_19
+  - first:
+      213: 7272596443989099755
+    second: Chat-5_20
+  - first:
+      213: -2018077047613338096
+    second: Chat-5_21
+  - first:
+      213: 627704598003835833
+    second: Chat-5_22
+  - first:
+      213: 9177419546246698797
+    second: Chat-5_23
+  - first:
+      213: 4897788379153265718
+    second: Chat-5_24
+  - first:
+      213: -3334659755543897089
+    second: Chat-5_25
+  - first:
+      213: -5381671524295779306
+    second: Chat-5_26
+  - first:
+      213: -8993113532931160356
+    second: Chat-5_27
+  - first:
+      213: -3193012697371920268
+    second: Chat-5_28
+  - first:
+      213: -5805075997002506755
+    second: Chat-5_29
+  - first:
+      213: -2030535183021959539
+    second: Chat-5_30
+  - first:
+      213: -8836189941536973474
+    second: Chat-5_31
+  - first:
+      213: -2931416956855194778
+    second: Chat-5_32
+  - first:
+      213: -5980056180868306396
+    second: Chat-5_33
+  - first:
+      213: 8761628165146698873
+    second: Chat-5_34
+  - first:
+      213: 6403834415583213129
+    second: Chat-5_35
+  - first:
+      213: -5602554672116241565
+    second: Chat-5_36
+  - first:
+      213: 5055173030737942133
+    second: Chat-5_37
+  - first:
+      213: -487347935031493498
+    second: Chat-5_38
+  - first:
+      213: -808032837892541640
+    second: Chat-5_39
+  - first:
+      213: 6731897611143629600
+    second: Chat-5_40
+  - first:
+      213: -1217105111305281740
+    second: Chat-5_41
+  - first:
+      213: 6162145707285536839
+    second: Chat-5_42
+  - first:
+      213: 4880673992314131075
+    second: Chat-5_43
+  - first:
+      213: -6456302014569424500
+    second: Chat-5_44
+  - first:
+      213: 2606604177809704659
+    second: Chat-5_45
+  - first:
+      213: 3648151784451568909
+    second: Chat-5_46
+  - first:
+      213: 7862337673679169092
+    second: Chat-5_47
+  - first:
+      213: 2993370205892131744
+    second: Chat-5_48
+  - first:
+      213: -5357695548853942289
+    second: Chat-5_49
+  - first:
+      213: 8703991681731238581
+    second: Chat-5_50
+  - first:
+      213: -6439554827578810288
+    second: Chat-5_51
+  - first:
+      213: 8759604386561840696
+    second: Chat-5_52
+  - first:
+      213: 3563723609307143402
+    second: Chat-5_53
+  - first:
+      213: 1730541923997355540
+    second: Chat-5_54
+  - first:
+      213: -3160846100721283210
+    second: Chat-5_55
+  - first:
+      213: -7317098783456478824
+    second: Chat-5_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chat-5_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1067
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92c34b7959a1c770800000000000000
+      internalID: 8629364562803802778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_1
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1195
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af2905584ebf03c0800000000000000
+      internalID: -4391081893789356121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_2
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1023
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e9eaba8ed815d70800000000000000
+      internalID: 9030154758306832024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_3
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 1151
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70490d85be1829dd0800000000000000
+      internalID: -2480777596920359929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_4
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 1067
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c35009579dbc2af0800000000000000
+      internalID: -419752207521393725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_5
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 1023
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda2bcdb2772d5330800000000000000
+      internalID: 3701157842532379358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_6
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 1051
+        width: 214
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e868ecee0828d2f00800000000000000
+      internalID: 1093673774794835598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_7
+      rect:
+        serializedVersion: 2
+        x: 2027
+        y: 1175
+        width: 214
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a9921e775be7130800000000000000
+      internalID: 3566487481407347233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_8
+      rect:
+        serializedVersion: 2
+        x: 2347
+        y: 1003
+        width: 218
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1f1da143a553d110800000000000000
+      internalID: 1284464478400618269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_9
+      rect:
+        serializedVersion: 2
+        x: 2667
+        y: 1131
+        width: 214
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e324de5d8d7f1b890800000000000000
+      internalID: -7443896198392626626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_10
+      rect:
+        serializedVersion: 2
+        x: 2987
+        y: 1047
+        width: 214
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14466794a76a5f010800000000000000
+      internalID: 1222065918049674305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_11
+      rect:
+        serializedVersion: 2
+        x: 3247
+        y: 1003
+        width: 210
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b933b3131f798f0800000000000000
+      internalID: -533692837071185008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_12
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1067
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 340a823cf2a913510800000000000000
+      internalID: 1527171278583668803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_13
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 1023
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764da9b60f6505fe0800000000000000
+      internalID: -1202365509910473625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_14
+      rect:
+        serializedVersion: 2
+        x: 2027
+        y: 1047
+        width: 214
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b1e8cb701d5a5f70800000000000000
+      internalID: 9176749516098429363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_15
+      rect:
+        serializedVersion: 2
+        x: 2667
+        y: 1003
+        width: 214
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200d41ac2c8610180800000000000000
+      internalID: -9150917782016831486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_16
+      rect:
+        serializedVersion: 2
+        x: 1859
+        y: 1043
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8681879e998e3dde0800000000000000
+      internalID: -1309447318890080152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_17
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 811
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961e3fdb31f932520800000000000000
+      internalID: 2676157510728278377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_18
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 875
+        width: 194
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fc5a4f3f60f0b10800000000000000
+      internalID: 1949784808526040873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_19
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 767
+        width: 194
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52362244017a3a00800000000000000
+      internalID: 737025752132104799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_20
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 831
+        width: 194
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be44db61fe37de460800000000000000
+      internalID: 7272596443989099755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_21
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 739
+        width: 194
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e43af0e995ef3e0800000000000000
+      internalID: -2018077047613338096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_22
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 703
+        width: 194
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3e5e3910e06b800800000000000000
+      internalID: 627704598003835833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_23
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 791
+        width: 214
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27d2c8047ebc5f70800000000000000
+      internalID: 9177419546246698797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_24
+      rect:
+        serializedVersion: 2
+        x: 2027
+        y: 855
+        width: 214
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 634777cc49078f340800000000000000
+      internalID: 4897788379153265718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_25
+      rect:
+        serializedVersion: 2
+        x: 2347
+        y: 747
+        width: 214
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbd300ce98e8b1d0800000000000000
+      internalID: -3334659755543897089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_26
+      rect:
+        serializedVersion: 2
+        x: 2667
+        y: 811
+        width: 214
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cd38013467055b0800000000000000
+      internalID: -5381671524295779306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_27
+      rect:
+        serializedVersion: 2
+        x: 2991
+        y: 719
+        width: 210
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd641eca3ea023380800000000000000
+      internalID: -8993113532931160356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_28
+      rect:
+        serializedVersion: 2
+        x: 3247
+        y: 683
+        width: 210
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478b5d97ed320b3d0800000000000000
+      internalID: -3193012697371920268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_29
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 427
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfdd488232a307fa0800000000000000
+      internalID: -5805075997002506755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_30
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 555
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d861b00620712d3e0800000000000000
+      internalID: -2030535183021959539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_31
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 383
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5d1fc6701c8f5580800000000000000
+      internalID: -8836189941536973474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_32
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 511
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66be61e1fc38157d0800000000000000
+      internalID: -2931416956855194778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_33
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 427
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a27725692920da0800000000000000
+      internalID: -5980056180868306396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_34
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 383
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97460a5256e879970800000000000000
+      internalID: 8761628165146698873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_35
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 411
+        width: 210
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9463245d87dfed850800000000000000
+      internalID: 6403834415583213129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_36
+      rect:
+        serializedVersion: 2
+        x: 2031
+        y: 539
+        width: 210
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b6ec5953abf32b0800000000000000
+      internalID: -5602554672116241565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_37
+      rect:
+        serializedVersion: 2
+        x: 2351
+        y: 367
+        width: 210
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57615478615972640800000000000000
+      internalID: 5055173030737942133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_38
+      rect:
+        serializedVersion: 2
+        x: 2671
+        y: 495
+        width: 210
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c7d6a92a79c39f0800000000000000
+      internalID: -487347935031493498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_39
+      rect:
+        serializedVersion: 2
+        x: 2991
+        y: 411
+        width: 210
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83370924a6a49c4f0800000000000000
+      internalID: -808032837892541640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_40
+      rect:
+        serializedVersion: 2
+        x: 3247
+        y: 367
+        width: 210
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02b4480d5318c6d50800000000000000
+      internalID: 6731897611143629600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_41
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 427
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f165a8959fb1fe0800000000000000
+      internalID: -1217105111305281740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_42
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 383
+        width: 194
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740e3f05fd6548550800000000000000
+      internalID: 6162145707285536839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_43
+      rect:
+        serializedVersion: 2
+        x: 2031
+        y: 411
+        width: 210
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3821f581323abb340800000000000000
+      internalID: 4880673992314131075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_44
+      rect:
+        serializedVersion: 2
+        x: 2671
+        y: 367
+        width: 210
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8953f2568b9666a0800000000000000
+      internalID: -6456302014569424500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_45
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 171
+        width: 194
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6856870b48c2420800000000000000
+      internalID: 2606604177809704659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_46
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 235
+        width: 194
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0571fe18b6d0a230800000000000000
+      internalID: 3648151784451568909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_47
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 127
+        width: 194
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44661df2572ac1d60800000000000000
+      internalID: 7862337673679169092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_48
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 191
+        width: 194
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab307bb7569a8920800000000000000
+      internalID: 2993370205892131744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_49
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 99
+        width: 194
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe78edbd844a5a5b0800000000000000
+      internalID: -5357695548853942289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_50
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 63
+        width: 194
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba9b8d915acac870800000000000000
+      internalID: 8703991681731238581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_51
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 155
+        width: 210
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0506386a00b12a6a0800000000000000
+      internalID: -6439554827578810288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_52
+      rect:
+        serializedVersion: 2
+        x: 2031
+        y: 219
+        width: 210
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 836d8f977cd509970800000000000000
+      internalID: 8759604386561840696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_53
+      rect:
+        serializedVersion: 2
+        x: 2351
+        y: 111
+        width: 210
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aecdc62cdb3e47130800000000000000
+      internalID: 3563723609307143402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_54
+      rect:
+        serializedVersion: 2
+        x: 2671
+        y: 175
+        width: 210
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e88c806be140810800000000000000
+      internalID: 1730541923997355540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_55
+      rect:
+        serializedVersion: 2
+        x: 2991
+        y: 83
+        width: 210
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f44d0e73b6224d0800000000000000
+      internalID: -3160846100721283210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat-5_56
+      rect:
+        serializedVersion: 2
+        x: 3247
+        y: 47
+        width: 210
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89932a19c61747a90800000000000000
+      internalID: -7317098783456478824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Chat-5_0: 8629364562803802778
+      Chat-5_1: -4391081893789356121
+      Chat-5_10: 1222065918049674305
+      Chat-5_11: -533692837071185008
+      Chat-5_12: 1527171278583668803
+      Chat-5_13: -1202365509910473625
+      Chat-5_14: 9176749516098429363
+      Chat-5_15: -9150917782016831486
+      Chat-5_16: -1309447318890080152
+      Chat-5_17: 2676157510728278377
+      Chat-5_18: 1949784808526040873
+      Chat-5_19: 737025752132104799
+      Chat-5_2: 9030154758306832024
+      Chat-5_20: 7272596443989099755
+      Chat-5_21: -2018077047613338096
+      Chat-5_22: 627704598003835833
+      Chat-5_23: 9177419546246698797
+      Chat-5_24: 4897788379153265718
+      Chat-5_25: -3334659755543897089
+      Chat-5_26: -5381671524295779306
+      Chat-5_27: -8993113532931160356
+      Chat-5_28: -3193012697371920268
+      Chat-5_29: -5805075997002506755
+      Chat-5_3: -2480777596920359929
+      Chat-5_30: -2030535183021959539
+      Chat-5_31: -8836189941536973474
+      Chat-5_32: -2931416956855194778
+      Chat-5_33: -5980056180868306396
+      Chat-5_34: 8761628165146698873
+      Chat-5_35: 6403834415583213129
+      Chat-5_36: -5602554672116241565
+      Chat-5_37: 5055173030737942133
+      Chat-5_38: -487347935031493498
+      Chat-5_39: -808032837892541640
+      Chat-5_4: -419752207521393725
+      Chat-5_40: 6731897611143629600
+      Chat-5_41: -1217105111305281740
+      Chat-5_42: 6162145707285536839
+      Chat-5_43: 4880673992314131075
+      Chat-5_44: -6456302014569424500
+      Chat-5_45: 2606604177809704659
+      Chat-5_46: 3648151784451568909
+      Chat-5_47: 7862337673679169092
+      Chat-5_48: 2993370205892131744
+      Chat-5_49: -5357695548853942289
+      Chat-5_5: 3701157842532379358
+      Chat-5_50: 8703991681731238581
+      Chat-5_51: -6439554827578810288
+      Chat-5_52: 8759604386561840696
+      Chat-5_53: 3563723609307143402
+      Chat-5_54: 1730541923997355540
+      Chat-5_55: -3160846100721283210
+      Chat-5_56: -7317098783456478824
+      Chat-5_6: 1093673774794835598
+      Chat-5_7: 3566487481407347233
+      Chat-5_8: 1284464478400618269
+      Chat-5_9: -7443896198392626626
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
