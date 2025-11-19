@@ -20,7 +20,10 @@ public class RequestManager : MonoBehaviour
             return _instance;
         }
     }
-
+    void Start()
+    {
+        EventBus.Instance.Subscribe<newUserMessageEvent>(SendChatConversation);
+    }
     /// <summary>
     /// 發送聊天對話請求
     /// </summary>
@@ -28,11 +31,22 @@ public class RequestManager : MonoBehaviour
     /// <param name="summary">對話摘要</param>
     /// <param name="messageHistory">訊息歷史</param>
     public bool is_thinking = false;
-    public void SendChatConversation(string message, string summary, List<MessageModel> messageHistory, string character = "")
+    public void SendChatConversation(newUserMessageEvent e)
     {
         if (is_thinking) return;
-        StartCoroutine(ConversationRequestCoroutine(message, summary, messageHistory, character));
+
+        is_thinking = true;
+        MessageHistoryData data  = FileManager.Instance.LoadChatHistory();
+        // 防護：避免當歷史訊息小於 10 時發生 GetRange 的例外
+        int start = Mathf.Max(0, data.messages.Count - 10);
+        List<MessageModel> range = data.messages.GetRange(start, data.messages.Count - start);
+        StartCoroutine(ConversationRequestCoroutine(e.userMessage, data.conversationData, range));
     }
+
+    // 在行動裝置上常見失敗原因：SSL 憑證問題 / 裝置網路權限或無網路 / 無法存取自訂 port
+    // 本方法加入更多日誌與可選的憑證 bypass（僅供測試用）。
+    public bool allowInvalidCertificates = false; // 設為 true 以在行動裝置上暫時繞過憑證驗證（不安全，僅測試）
+    public int requestTimeoutSeconds = 30;
 
     public IEnumerator ConversationRequestCoroutine(string msg, string summary, List<MessageModel> messageHistory, string character = "")
     {
@@ -42,6 +56,15 @@ public class RequestManager : MonoBehaviour
             url += $"?character={UnityWebRequest.EscapeURL(character)}";
         }
         Debug.Log($"[RequestManager] 正在請求聊天對話: {url}");
+
+        // 檢查裝置網路狀態
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            is_thinking = false;
+            Debug.LogError("[RequestManager] 無網路連線，請檢查裝置網路設定");
+            EventBus.Instance.Publish(new showMessageBoxEvent("無網路連線", Color.red, 2));
+            yield break;
+        }
 
         // 建立對話請求資料
         ChatConversationRequestModel requestData = new ChatConversationRequestModel
@@ -70,9 +93,21 @@ public class RequestManager : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+        request.timeout = requestTimeoutSeconds;
+
+        // 若需要可選擇性繞過憑證驗證（用於測試自簽章或憑證錯誤）
+        if (allowInvalidCertificates)
+        {
+            request.certificateHandler = new BypassCertificate();
+            Debug.LogWarning("[RequestManager] allowInvalidCertificates = true，已暫時繞過憑證驗證（不安全，僅供測試）");
+        }
         
         yield return request.SendWebRequest();
+        // 當 request 完成後，先記得重設 thinking 標記
         is_thinking = false;
+
+        Debug.Log($"[RequestManager] Request result: {request.result}, responseCode: {request.responseCode}, error: {request.error}");
+
         if (request.result == UnityWebRequest.Result.Success)
         {
             string responseData = request.downloadHandler.text;
@@ -88,12 +123,13 @@ public class RequestManager : MonoBehaviour
                     Debug.Log($"[RequestManager] 更新後的摘要: {response.summary}");
                     
                     // 發布聊天回應事件
-                    EventBus.Instance.Publish<ChatConversationReceivedEvent>(new ChatConversationReceivedEvent(response));
+                    EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary));
                 }
             }
             catch (System.Exception ex)
             {
                 //MessageBox.Show($"與伺服器連接失敗 請重試");
+                EventBus.Instance.Publish(new showMessageBoxEvent("與伺服器連接失敗 請重試", Color.red, 2));
                 Debug.LogError($"[RequestManager] 聊天回應解析失敗: {ex.Message}");
             }
         }
@@ -101,9 +137,29 @@ public class RequestManager : MonoBehaviour
         {
             Debug.LogError($"[RequestManager] 聊天對話請求失敗: {request.error}");
             Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
+
+            // 若 responseCode == 0 且有錯誤訊息，可能為 TLS/SSL 或網路層級錯誤
+            if (request.responseCode == 0)
+            {
+                EventBus.Instance.Publish(new showMessageBoxEvent("網路連線失敗或憑證驗證失敗（請確認伺服器憑證）", Color.red, 3));
+            }
+            else
+            {
+                EventBus.Instance.Publish(new showMessageBoxEvent("伺服器忙碌中 請重試", Color.red, 2));
+            }
         }
 
         request.Dispose();
+    }
+
+    // 測試用：強制接受所有憑證（不安全）
+    private class BypassCertificate : CertificateHandler
+    {
+        protected override bool ValidateCertificate(byte[] certificateData)
+        {
+            // 繞過並接受所有憑證（僅限開發/測試）
+            return true;
+        }
     }
 
 
@@ -227,7 +283,7 @@ public class RequestManager : MonoBehaviour
         }
 
         string jsonData = JsonUtility.ToJson(requestData);
-        UnityWebRequest request = new UnityWebRequest("https://twswapi.cloudns.nz:2096/api/conversation/", "POST");
+        UnityWebRequest request = new UnityWebRequest("https://twswapi.cloudns.nz:2096/api/restaurant", "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -253,12 +309,15 @@ public class RequestManager : MonoBehaviour
             }
             catch (System.Exception ex)
             {
+                is_thinking = false;
+                EventBus.Instance.Publish(new showMessageBoxEvent("與伺服器連接失敗 請重試" + ex.Message, Color.red, 2));
                 Debug.LogError($"[RequestManager] 對話回應解析失敗: {ex.Message}");
             }
         }
         else
         {
-            Debug.LogError($"[RequestManager] AI 對話請求失敗: {request.error}");
+            is_thinking = false;
+            EventBus.Instance.Publish(new showMessageBoxEvent("AI 對話請求失敗 請重試" + request.responseCode, Color.red, 2));
             Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
         }
 
@@ -267,7 +326,7 @@ public class RequestManager : MonoBehaviour
 
     private IEnumerator GetRestaurantCoroutine(float latitude, float longitude, int radius)
     {
-        string url = $"https://twswapi.cloudns.nz:2096/api/getnearby/?latitude={latitude}&longitude={longitude}&radius={radius}";
+        string url = $"https://twswapi.cloudns.nz:2096/api/getnearby?latitude={latitude}&longitude={longitude}&radius={radius}";
         Debug.Log($"[RequestManager] 正在請求餐廳資料: {url}");
 
         UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");

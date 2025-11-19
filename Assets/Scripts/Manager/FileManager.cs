@@ -36,22 +36,24 @@ public class FileManager : MonoBehaviour
 
     void Start()
     {
-        EventBus.Instance.Subscribe<ChatConversationReceivedEvent>(OnChatConversationReceived);
+        EventBus.Instance.Subscribe<newAIMessageEvent>(onRecieveMessage);
     }
-    void OnChatConversationReceived(ChatConversationReceivedEvent data)
+    private void onRecieveMessage(newAIMessageEvent e)
     {
-        // Example: Save chat history when a new conversation is received
-        MessageHistoryData msgs = LoadChatHistory();
-        msgs.messages.Add(new MessageModel
+        MessageHistoryData data = LoadChatHistory();
+        data.messages.Add(new MessageModel
         {
-            sender = MessageModel.SenderType.AI,
-            message = data.response.reply,
+            sender = MessageModel.SenderType.User,
+            message = e.userMessage,
             timestamp = System.DateTime.Now
         });
-        EventBus.Instance.Publish(new newAIMessageEvent(data.response.reply));
-        SaveChatHistory(msgs.messages, data.response.summary);
+        data.messages.Add(new MessageModel {
+            sender = MessageModel.SenderType.AI,
+            message = e.aiMessage,
+            timestamp = System.DateTime.Now
+        });
+        SaveChatHistory(data.messages, e.conversationData);   
     }
-
     /// <summary>
     /// 儲存聊天記錄到本地
     /// </summary>
@@ -94,29 +96,45 @@ public class FileManager : MonoBehaviour
         try
         {
             string savePath = Path.Combine(Application.persistentDataPath, fileName);
-            
+
             if (File.Exists(savePath))
             {
                 string json = File.ReadAllText(savePath);
                 MessageHistoryData historyData = JsonUtility.FromJson<MessageHistoryData>(json);
-                
+
                 if (historyData != null && historyData.messages != null)
                 {
                     Debug.Log($"[FileManager] 從 {savePath} 載入 {historyData.messages.Count} 則歷史訊息");
                     return historyData;
                 }
+                else
+                {
+                    Debug.LogWarning($"[FileManager] 檔案存在但內容無法解析或 messages 為 null，會覆寫為空的歷史記錄: {savePath}");
+                }
             }
             else
             {
-                Debug.Log($"[FileManager] 沒有找到歷史聊天記錄: {savePath}");
+                Debug.Log($"[FileManager] 沒有找到歷史聊天記錄，將建立新的檔案: {savePath}");
             }
+
+            // 如果檔案不存在或內容不可用，建立一個預設的空記錄並儲存
+            MessageHistoryData empty = new MessageHistoryData
+            {
+                messages = new List<MessageModel>(),
+                conversationData = ""
+            };
+
+            // 使用 SaveChatHistory 寫入檔案（會有內部錯誤處理）
+            SaveChatHistory(empty.messages, empty.conversationData, fileName);
+            return empty;
         }
         catch (System.Exception ex)
         {
             Debug.LogError($"[FileManager] 載入聊天記錄失敗: {ex.Message}");
         }
-        
-        return null;
+
+        // 若發生不可預期例外，回傳一個空的 MessageHistoryData 作為保護
+        return new MessageHistoryData { messages = new List<MessageModel>(), conversationData = "" };
     }
 
     /// <summary>

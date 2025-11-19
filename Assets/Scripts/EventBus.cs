@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class EventBus : MonoBehaviour
 {
-    private static EventBus instance;
-    public static EventBus Instance
+    void Awake()
     {
-        get
+        if (Instance != null)
         {
-            if (instance == null)
-            {
-                GameObject go = new GameObject("EventBus");
-                instance = go.AddComponent<EventBus>();
-                DontDestroyOnLoad(go);
-            }
-            return instance;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
-
+    public static EventBus Instance;
     private Dictionary<Type, List<Action<object>>> eventHandlers = new Dictionary<Type, List<Action<object>>>();
 
     public void Subscribe<T>(Action<T> handler)
@@ -64,7 +62,10 @@ public class EventBus : MonoBehaviour
 
     private void OnDestroy()
     {
-        eventHandlers.Clear();
-        instance = null;
+        if (Instance == this)
+        {
+            eventHandlers.Clear();
+            Instance = null;
+        }
     }
 }

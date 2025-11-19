@@ -25,7 +25,18 @@ public class GPSRecievedEvent
         return $"GPS位置: ({latitude:F6}, {longitude:F6}), 海拔: {altitude}, 精確度: {horizontalAccuracy}";
     }
 }
-
+public class showMessageBoxEvent
+{
+    public string message;
+    public Color color=Color.red;
+    public int time=3;
+    public showMessageBoxEvent(string msg, Color? col = null, int? t = 3)
+    {
+        message = msg;
+        color = col ?? Color.red;
+        time = t ?? 3;
+    }
+}
 public class RestaurantDataReceivedEvent
 {
     public RequestPlacesModel places;

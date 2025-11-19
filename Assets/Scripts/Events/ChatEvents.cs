@@ -4,19 +4,25 @@ using UnityEngine;
 /// <summary>
 /// 聊天對話回應事件
 /// </summary>
-public class ChatConversationReceivedEvent
-{
-    public ChatConversationResponseModel response;
-    public ChatConversationReceivedEvent(ChatConversationResponseModel model)
-    {
-        response = model;
-    }
-}
+
 public class newAIMessageEvent
 {
     public string aiMessage;
-    public newAIMessageEvent(string message)
+    public string userMessage;
+    public string conversationData;
+    public newAIMessageEvent(string aiMessage, string userMessage, string conversationData)
     {
-        aiMessage = message;
+        this.aiMessage = aiMessage;
+        this.userMessage = userMessage;
+        this.conversationData = conversationData;
+    }
+
+}
+public class newUserMessageEvent
+{
+    public string userMessage;
+    public newUserMessageEvent(string message)
+    {
+        userMessage = message;
     }
 }
