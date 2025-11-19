@@ -38,6 +38,7 @@ public class GPSManager : MonoBehaviour
     }
     public void getLocationRequest()
     {
+        if (is_locating) return;
         StartCoroutine(GetLocation());
     }
 
@@ -52,7 +53,7 @@ public class GPSManager : MonoBehaviour
         yield return new WaitWhile(() => !UnityEditor.EditorApplication.isRemoteConnected);
         yield return new WaitForSecondsRealtime(5f);
 #endif
-        
+
 
 #if UNITY_EDITOR
         // if in editor
@@ -63,12 +64,14 @@ public class GPSManager : MonoBehaviour
 
         // check permission
         if (!UnityEngine.Input.location.isEnabledByUser) {
+            is_locating = false;
             Debug.LogFormat("Android and Location not enabled");
             yield break;
         }
 
 #elif UNITY_IOS
         if (!UnityEngine.Input.location.isEnabledByUser) {
+            is_locating = false;
             Debug.LogFormat("IOS and Location not enabled");
             yield break;
         }
@@ -97,6 +100,7 @@ public class GPSManager : MonoBehaviour
         // check if reach max wait
         if (maxWait < 1)
         {
+            is_locating = false;
             Debug.LogFormat("Timed out");
             yield break;
         }
@@ -104,6 +108,7 @@ public class GPSManager : MonoBehaviour
         // fail
         if (UnityEngine.Input.location.status != LocationServiceStatus.Running)
         {
+            is_locating = false;
             Debug.LogFormat("Unable to determine device location. Failed with status {0}", UnityEngine.Input.location.status);
             yield break;
         }
