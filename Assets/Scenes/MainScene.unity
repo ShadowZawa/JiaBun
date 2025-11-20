@@ -410,8 +410,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 390787797}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &349903195
@@ -512,7 +511,7 @@ RectTransform:
   - {fileID: 2048008224}
   - {fileID: 1846497618}
   - {fileID: 1003102578}
-  m_Father: {fileID: 349903194}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1030,6 +1029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GPSManager
   latitude: 0
   longitude: 0
+  has_located: 0
   is_locating: 0
 --- !u!4 &625138424
 Transform:
@@ -2107,7 +2107,7 @@ GameObject:
   - component: {fileID: 2048008227}
   - component: {fileID: 2048008226}
   - component: {fileID: 2048008225}
-  - component: {fileID: 2048008228}
+  - component: {fileID: 2048008229}
   m_Layer: 0
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -2274,7 +2274,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048008223}
   m_CullTransparentMesh: 1
---- !u!114 &2048008228
+--- !u!114 &2048008229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2283,9 +2283,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2048008223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecad1d814371e245b95ed613dfa3301, type: 3}
+  m_Script: {fileID: 11500000, guid: a9ab9c5d32af93c45ae0a61820877818, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FixInputField
+  m_EditorClassIdentifier: Assembly-CSharp::InputFieldFix
 --- !u!1 &2099590492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2427,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 349903194}
+  - {fileID: 390787797}
   - {fileID: 334879329}
   - {fileID: 1761042141}
   - {fileID: 625138424}

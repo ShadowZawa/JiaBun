@@ -40,16 +40,20 @@ public class showMessageBoxEvent
 public class RestaurantDataReceivedEvent
 {
     public RequestPlacesModel places;
-    public RestaurantDataReceivedEvent(RequestPlacesModel model)
+    public string message;
+    public RestaurantDataReceivedEvent(RequestPlacesModel model, string msg)
     {
         places = model;
+        message = msg;
     }
 }
 public class RestaurantConversationRecievedEvent
 {
+    public string oldMessage;
     public ConversationResponseModel conversation;
-    public RestaurantConversationRecievedEvent(ConversationResponseModel model)
+    public RestaurantConversationRecievedEvent(ConversationResponseModel model, string msg)
     {
         conversation = model;
+        oldMessage = msg;
     }
 }

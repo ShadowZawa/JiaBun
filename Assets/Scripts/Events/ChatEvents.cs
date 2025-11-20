@@ -5,6 +5,15 @@ using UnityEngine;
 /// 聊天對話回應事件
 /// </summary>
 
+public class newRestaurantRequestEvent
+{
+    public string userMessage;
+    public newRestaurantRequestEvent(string message)
+    {
+        userMessage = message;
+    }
+
+}
 public class newAIMessageEvent
 {
     public string aiMessage;

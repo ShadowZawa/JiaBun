@@ -23,10 +23,6 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/MainScene.unity
   - m_enabled: 1
-    m_path: Assets/Scenes/ChatScene.unity
-  - m_enabled: 1
-    m_path: Assets/Scenes/SampleScene.unity
-  - m_enabled: 1
     m_path: Assets/Scenes/newChatScene.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

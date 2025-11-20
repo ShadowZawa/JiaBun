@@ -31,6 +31,7 @@ public class GPSManager : MonoBehaviour
     }
     public float latitude;
     public float longitude;
+    public bool has_located = false;
     public bool is_locating = false;
     void Start()
     {
@@ -126,7 +127,7 @@ public class GPSManager : MonoBehaviour
             latitude = (float)UnityEngine.Input.location.lastData.latitude;
             longitude = (float)UnityEngine.Input.location.lastData.longitude;
             print(latitude.ToString() + ", " + longitude.ToString());
-            
+            has_located = true;
             // 發布 GPS 位置獲取成功事件
             GPSRecievedEvent locationData = new GPSRecievedEvent(
                 latitude, 

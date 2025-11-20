@@ -9,7 +9,7 @@ public class NewChatView : MonoBehaviour
     [Header("聊天設定")]
     public float userXPosition = 600f; // 使用者訊息 X 位置（靠右）
     public float aiXPosition = 200f; // AI 訊息 X 位置（靠左）
-    public float verticalSpacing = -100f; // 每個氣泡間的垂直間距
+    public float verticalSpacing = 100f; // 每個氣泡間的垂直間距（正數）
     public float bubbleHeightPerLine = 20f; // 每行文字的氣泡高度
     public float maxTextWidth = 160f; // 文字最大寬度
     
@@ -32,9 +32,10 @@ public class NewChatView : MonoBehaviour
                 {
                     AddSingleChatBubble(part.Trim(), isUser);
                 }
+                lastYPosition += verticalSpacing;
             }
             // 拆分後也要更新高度
-            UpdateContentHeight();
+            //UpdateContentHeight();
         }
         else
         {
@@ -73,10 +74,11 @@ public class NewChatView : MonoBehaviour
         
         // 設定位置：使用者靠右，AI 靠左
         float xPos = isUser ? userXPosition : aiXPosition;
-        float yPos = verticalSpacing + lastYPosition;
+        // 計算新氣泡的 Y 位置：上一個氣泡底部 + 間距(verticalSpacing 是負數)
+        float yPos = lastYPosition + verticalSpacing;
         bubbleRect.localPosition = new Vector3(xPos, yPos, 0f);
         
-        // 更新最後的 Y 位置（使用實際的 bubbleRect 高度加上間距）
+        // 更新最後的 Y 位置：當前氣泡的頂部 - 氣泡高度 = 當前氣泡的底部
         lastYPosition = yPos - bubbleRect.sizeDelta.y;
         
         // 每次新增氣泡後更新 content 高度
@@ -128,6 +130,6 @@ public class NewChatView : MonoBehaviour
     public void OnClickBackButton()
     {
         // 在這裡處理返回按鈕的邏輯，例如切換場景或關閉視窗
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
     }
 }

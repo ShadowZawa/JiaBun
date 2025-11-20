@@ -88,6 +88,7 @@ public class PlaceModel
 public class ConversationRequestModel
 {
     public string PreviousData;
+    public string message;
     public List<ConversationChoice> choice;
 }
 

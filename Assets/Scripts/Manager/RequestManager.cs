@@ -23,6 +23,18 @@ public class RequestManager : MonoBehaviour
     void Start()
     {
         EventBus.Instance.Subscribe<newUserMessageEvent>(SendChatConversation);
+        EventBus.Instance.Subscribe<newRestaurantRequestEvent>(getRestaurant);
+        EventBus.Instance.Subscribe<RestaurantDataReceivedEvent>(getRestaurantConversation);
+    }
+
+    void OnDestroy()
+    {
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Unsubscribe<newUserMessageEvent>(SendChatConversation);
+            EventBus.Instance.Unsubscribe<newRestaurantRequestEvent>(getRestaurant);
+            EventBus.Instance.Unsubscribe<RestaurantDataReceivedEvent>(getRestaurantConversation);
+        }
     }
     /// <summary>
     /// 發送聊天對話請求
@@ -214,9 +226,14 @@ public class RequestManager : MonoBehaviour
     /// <param name="latitude">緯度</param>
     /// <param name="longitude">經度</param>
     /// <param name="radius">搜尋半徑（公尺），預設 1000</param>
-    public void getRestaurant(float latitude, float longitude, int radius = 1000)
+    /// 
+    public void getRestaurant(newRestaurantRequestEvent e)
     {
-        StartCoroutine(GetRestaurantCoroutine(latitude, longitude, radius));
+        float latitude = GPSManager.instance.latitude;
+        float longitude = GPSManager.instance.longitude;
+        int radius = 1000;
+
+        StartCoroutine(GetRestaurantCoroutine(latitude, longitude, radius, e.userMessage));
         /*RequestPlacesModel testModel = new RequestPlacesModel
         {
             places = new List<PlaceModel>{
@@ -252,19 +269,22 @@ public class RequestManager : MonoBehaviour
     /// </summary>
     /// <param name="model">餐廳資料模型</param>
     /// <param name="previousData">先前的對話資料（可選）</param>
-    public void getRestaurantConversation(RequestPlacesModel model, string previousData = "")
+    public void getRestaurantConversation(RestaurantDataReceivedEvent e)
     {
-        StartCoroutine(GetRestaurantConversationCoroutine(model, previousData));
+        MessageHistoryData data = FileManager.Instance.LoadChatHistory();
+        StartCoroutine(GetRestaurantConversationCoroutine(e.places, data.conversationData, e.message));
     }
 
-    public IEnumerator GetRestaurantConversationCoroutine(RequestPlacesModel model, string previousData = "")
+    public IEnumerator GetRestaurantConversationCoroutine(RequestPlacesModel model, string previousData, string msg)
     {
         
 
         // 建立對話請求資料
+        print(previousData);
         ConversationRequestModel requestData = new ConversationRequestModel
         {
             PreviousData = previousData,
+            message = msg,
             choice = new List<ConversationChoice>()
         };
 
@@ -304,7 +324,7 @@ public class RequestManager : MonoBehaviour
                     Debug.Log($"[RequestManager] AI 推薦餐廳 Index: {response.resultIndex}");
                     Debug.Log($"[RequestManager] AI 回應: {response.resultConversation}");
                     Debug.Log($"[RequestManager] 新的對話資料: {response.newData}");
-                    EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response));
+                    EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response, msg));
                 }
             }
             catch (System.Exception ex)
@@ -324,7 +344,7 @@ public class RequestManager : MonoBehaviour
         request.Dispose();
     }
 
-    private IEnumerator GetRestaurantCoroutine(float latitude, float longitude, int radius)
+    private IEnumerator GetRestaurantCoroutine(float latitude, float longitude, int radius, string message = "")
     {
         string url = $"https://twswapi.cloudns.nz:2096/api/getnearby?latitude={latitude}&longitude={longitude}&radius={radius}";
         Debug.Log($"[RequestManager] 正在請求餐廳資料: {url}");
@@ -349,7 +369,7 @@ public class RequestManager : MonoBehaviour
                     LogPlacesInfo();
                     
                     // 發布事件通知其他組件
-                    EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(currentPlacesData));
+                    EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(currentPlacesData, message));
                 }
                 else
                 {

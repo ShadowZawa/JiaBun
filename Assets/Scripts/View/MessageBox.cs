@@ -41,11 +41,23 @@ public class MessageBox : MonoBehaviour
     
     void OnDestroy()
     {
-        EventBus.Instance.Unsubscribe<showMessageBoxEvent>(showMessageBox);
+        // 停止所有協程，避免在物件銷毀後繼續執行
+        StopAllCoroutines();
+        
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Unsubscribe<showMessageBoxEvent>(showMessageBox);
+        }
     }
 
     void showMessageBox(showMessageBoxEvent e)
     {
+        // 檢查物件是否仍然有效
+        if (this == null || !this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        
         messageQueue.Enqueue(new MessageData(e.message, e.color, e.time));
         
         if (!isDisplaying)
