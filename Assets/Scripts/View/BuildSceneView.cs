@@ -3,12 +3,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UI;
+
 public class BuildSceneView : MonoBehaviour
 {
 
     public TMP_InputField messageInputField;
+    public TMP_InputField preferenceInputField;
     public TextMeshProUGUI gpsButtonText;
+    public GameObject SettingPanel;
     void Start()
     {
         EventBus.Instance.Subscribe<newAIMessageEvent>(OnAIMessage);
@@ -84,7 +86,29 @@ public class BuildSceneView : MonoBehaviour
         }
 
     }
-    
+    public void settingPanelToggle()
+    {
+        SettingPanel.SetActive(!SettingPanel.activeSelf);
+    }
+    public void onClickLoadPreferenceButton()
+    {
+
+        GUIUtility.systemCopyBuffer = FileManager.Instance.LoadChatHistory().conversationData;
+        
+    }
+    public void onClickClearHistoryButton()
+    {
+        FileManager.Instance.DeleteChatHistory();
+    }
+    public void onClickSavePreferenceButton()
+    {
+        if (preferenceInputField.text != "")
+        {
+            MessageHistoryData data = FileManager.Instance.LoadChatHistory();
+            data.conversationData = preferenceInputField.text;
+            preferenceInputField.text = "";
+        }
+    }
     public void onClickSendButton()
     {
         if (messageInputField.text == "[ClearHistory]")
