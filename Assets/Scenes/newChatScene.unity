@@ -681,11 +681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewChatView
   newChatBox: {fileID: 3317357000450666352, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
   chatContent: {fileID: 101263511}
-  userXPosition: 550
-  aiXPosition: 250
-  verticalSpacing: -200
-  bubbleHeightPerLine: 20
-  maxTextWidth: 160
 --- !u!1 &840986572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,27 +1141,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 63.356
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1198,11 +1193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1089.3297
+      value: -1020
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 101
+      value: -435
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1214,6 +1209,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7020474871460896951, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457164777582665606, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457164777582665606, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457164777582665606, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457164777582665606, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457164777582665606, guid: 278a6b8cdb68d4540b3ffe4ebcc1f382, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
