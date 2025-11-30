@@ -12,6 +12,9 @@ public class NewChatView : MonoBehaviour
     void Start()
     {
         ReBuildChat();
+        Canvas.ForceUpdateCanvases();
+        //讓 scroll view 跑到底部
+        chatContent.parent.parent.GetComponent<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 0f;
     }
 
     void AddChat(string message, bool isUser)
@@ -45,7 +48,9 @@ public class NewChatView : MonoBehaviour
         bubbleRect.anchorMin = new Vector2(0f, 1f);
         bubbleRect.anchorMax = new Vector2(0f, 1f);
         bubbleRect.pivot = new Vector2(0f, 1f);
-
+        if (isUser){
+            bubbleRect.GetComponent<UnityEngine.UI.Image>().color = new Color(0.4f,1f,0.4f,1f);
+        }
         // 文字元件
         bubbleRect.sizeDelta = new Vector2(170, bubbleRect.sizeDelta.y);
         TextMeshProUGUI chatText = chatBubble.GetComponentInChildren<TextMeshProUGUI>();
@@ -62,7 +67,7 @@ public class NewChatView : MonoBehaviour
         // 強制更新 Canvas 以確保所有佈局組件完成計算
         Canvas.ForceUpdateCanvases();
 
-        float xPos = isUser ? 250 : 0;
+        float xPos = isUser ? 250 : 25;
         float yPos = -cumulativeHeight; // 往下排列使用負值
         bubbleRect.anchoredPosition = new Vector2(xPos, yPos);
 

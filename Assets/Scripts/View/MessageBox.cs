@@ -17,6 +17,7 @@ public class MessageBox : MonoBehaviour
     public TextMeshProUGUI messageText;
     private Queue<MessageData> messageQueue = new Queue<MessageData>();
     private bool isDisplaying = false;
+    private Coroutine displayCoroutine; // 儲存當前顯示協程的引用
 
     private class MessageData
     {
@@ -49,6 +50,18 @@ public class MessageBox : MonoBehaviour
             EventBus.Instance.Unsubscribe<showMessageBoxEvent>(showMessageBox);
         }
     }
+    public void nextBox()
+    {
+        // 直接跳至下一個訊息
+        if (isDisplaying && displayCoroutine != null)
+        {
+            // 停止當前的顯示協程
+            StopCoroutine(displayCoroutine);
+            
+            // 立即開始顯示下一個訊息
+            displayCoroutine = StartCoroutine(DisplayMessages());
+        }
+    }
 
     void showMessageBox(showMessageBoxEvent e)
     {
@@ -62,7 +75,7 @@ public class MessageBox : MonoBehaviour
         
         if (!isDisplaying)
         {
-            StartCoroutine(DisplayMessages());
+            displayCoroutine = StartCoroutine(DisplayMessages());
         }
     }
 

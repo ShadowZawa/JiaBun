@@ -8,6 +8,6 @@ public class InputFieldFix : MonoBehaviour
     {
         TMP_InputField field = gameObject.GetComponent<TMP_InputField>();
         field.shouldHideMobileInput = true;
-        field.ActivateInputField();
+        //field.ActivateInputField();
     }
 }

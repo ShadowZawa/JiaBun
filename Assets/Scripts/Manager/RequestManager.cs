@@ -43,6 +43,7 @@ public class RequestManager : MonoBehaviour
     /// <param name="summary">對話摘要</param>
     /// <param name="messageHistory">訊息歷史</param>
     public bool is_thinking = false;
+    public string restaurant_url = "";
     public void SendChatConversation(newUserMessageEvent e)
     {
         if (is_thinking) return;
@@ -55,8 +56,7 @@ public class RequestManager : MonoBehaviour
         StartCoroutine(ConversationRequestCoroutine(e.userMessage, data.conversationData, range));
     }
 
-    // 在行動裝置上常見失敗原因：SSL 憑證問題 / 裝置網路權限或無網路 / 無法存取自訂 port
-    // 本方法加入更多日誌與可選的憑證 bypass（僅供測試用）。
+
     public bool allowInvalidCertificates = false; // 設為 true 以在行動裝置上暫時繞過憑證驗證（不安全，僅測試）
     public int requestTimeoutSeconds = 30;
 
@@ -295,7 +295,7 @@ public class RequestManager : MonoBehaviour
             {
                 ConversationChoice choice = new ConversationChoice
                 {
-                    ID = $"choice{i + 1}",
+                    ID = $"{i}",
                     displayName = model.places[i].displayName
                 };
                 requestData.choice.Add(choice);
@@ -324,6 +324,7 @@ public class RequestManager : MonoBehaviour
                     Debug.Log($"[RequestManager] AI 推薦餐廳 Index: {response.resultIndex}");
                     Debug.Log($"[RequestManager] AI 回應: {response.resultConversation}");
                     Debug.Log($"[RequestManager] 新的對話資料: {response.newData}");
+                    restaurant_url = model.places[int.Parse(response.resultIndex)].googleMapsUri;   
                     EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response, msg));
                 }
             }

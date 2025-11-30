@@ -11,6 +11,8 @@ public class BuildSceneView : MonoBehaviour
     public TMP_InputField preferenceInputField;
     public TextMeshProUGUI gpsButtonText;
     public GameObject SettingPanel;
+
+    public UnityEngine.UI.Button GoToButton;
     void Start()
     {
         EventBus.Instance.Subscribe<newAIMessageEvent>(OnAIMessage);
@@ -84,7 +86,21 @@ public class BuildSceneView : MonoBehaviour
             EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(e.aiMessage, Color.black, 8));
 
         }
+        updateUrlButton();
+    }
 
+    void updateUrlButton(){
+        
+        if (RequestManager.instance.restaurant_url != ""){
+            GoToButton.gameObject.SetActive(true);
+            GoToButton.onClick.RemoveAllListeners();
+            GoToButton.onClick.AddListener(() => {
+                Application.OpenURL(RequestManager.instance.restaurant_url);
+            });
+        }
+        else{
+            GoToButton.gameObject.SetActive(false);
+        }
     }
     public void settingPanelToggle()
     {
