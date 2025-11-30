@@ -19,6 +19,7 @@ public class BuildSceneView : MonoBehaviour
         EventBus.Instance.Subscribe<GPSRecievedEvent>(onGetGPS);
         EventBus.Instance.Subscribe<RestaurantConversationRecievedEvent>(onGetRestaurantMessage);
         EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("嗨嗨~", Color.black, 5));
+        InvokeRepeating("updateUrlButton", 1f, 5f);
     }
     void OnDestroy()
     {
@@ -86,7 +87,7 @@ public class BuildSceneView : MonoBehaviour
             EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(e.aiMessage, Color.black, 8));
 
         }
-        updateUrlButton();
+        
     }
 
     void updateUrlButton(){

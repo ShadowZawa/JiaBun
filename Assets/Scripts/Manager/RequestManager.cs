@@ -295,7 +295,7 @@ public class RequestManager : MonoBehaviour
             {
                 ConversationChoice choice = new ConversationChoice
                 {
-                    ID = $"{i}",
+                    ID = i,
                     displayName = model.places[i].displayName
                 };
                 requestData.choice.Add(choice);
@@ -320,11 +320,11 @@ public class RequestManager : MonoBehaviour
             {
                 ConversationResponseModel response = JsonUtility.FromJson<ConversationResponseModel>(responseData);
                 if (response != null)
-                {
+                { 
+                    restaurant_url = model.places[response.resultIndex].googleMapsUri;   
                     Debug.Log($"[RequestManager] AI 推薦餐廳 Index: {response.resultIndex}");
                     Debug.Log($"[RequestManager] AI 回應: {response.resultConversation}");
                     Debug.Log($"[RequestManager] 新的對話資料: {response.newData}");
-                    restaurant_url = model.places[int.Parse(response.resultIndex)].googleMapsUri;   
                     EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response, msg));
                 }
             }

@@ -98,7 +98,7 @@ public class ConversationRequestModel
 [System.Serializable]
 public class ConversationChoice
 {
-    public string ID;
+    public int ID;
     public string displayName;
     public float? rating;
     public string priceLevel;
@@ -111,7 +111,7 @@ public class ConversationChoice
     {
         return new ConversationChoice
         {
-            ID = id.ToString(),
+            ID = id,
             displayName = place.displayName,
             rating = place.rating,
             priceLevel = place.GetPriceRangeText(),
@@ -127,7 +127,7 @@ public class ConversationChoice
 public class ConversationResponseModel
 {
     public string newData;
-    public string resultIndex;
+    public int resultIndex;
     public string resultConversation;
 }
 
