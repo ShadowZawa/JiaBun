@@ -19,11 +19,13 @@ public class newAIMessageEvent
     public string aiMessage;
     public string userMessage;
     public string conversationData;
-    public newAIMessageEvent(string aiMessage, string userMessage, string conversationData)
+    public int affinity;
+    public newAIMessageEvent(string aiMessage, string userMessage, string conversationData, int affinity)
     {
         this.aiMessage = aiMessage;
         this.userMessage = userMessage;
         this.conversationData = conversationData;
+        this.affinity = affinity;
     }
 
 }

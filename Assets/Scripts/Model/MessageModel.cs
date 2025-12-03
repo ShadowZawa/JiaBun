@@ -52,4 +52,5 @@ public class MessageHistoryData
 {
     public List<MessageModel> messages = new List<MessageModel>();
     public string conversationData = "";
+    public int affinity = 0;
 }

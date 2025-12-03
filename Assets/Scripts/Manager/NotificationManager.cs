@@ -1,6 +1,7 @@
 using UnityEngine;
 #if UNITY_ANDROID
 using Unity.Notifications.Android;
+using UnityEngine.Android;
 #elif UNITY_IOS
 using Unity.Notifications.iOS;
 #endif
@@ -39,12 +40,14 @@ public class NotificationManager : MonoBehaviour
     void Start()
     {
         InitializeNotifications();
-        ScheduleDailyNotifications();
     }
 
     void InitializeNotifications()
     {
 #if UNITY_ANDROID
+        // Android 13 (API 33) 以上需要動態請求通知權限
+        RequestNotificationPermission();
+        
         // 建立 Android 通知頻道
         var channel = new AndroidNotificationChannel()
         {
@@ -75,8 +78,51 @@ public class NotificationManager : MonoBehaviour
         // 清除之前的所有通知
         iOSNotificationCenter.RemoveAllScheduledNotifications();
         iOSNotificationCenter.RemoveAllDeliveredNotifications();
+        
+        // iOS 直接排程通知
+        ScheduleDailyNotifications();
 #endif
     }
+
+#if UNITY_ANDROID
+    /// <summary>
+    /// 請求 Android 通知權限（Android 13+ 需要）
+    /// </summary>
+    private void RequestNotificationPermission()
+    {
+        // Android 13 (API 33) 以上需要 POST_NOTIFICATIONS 權限
+        if (!Permission.HasUserAuthorizedPermission("android.permission.POST_NOTIFICATIONS"))
+        {
+            Debug.Log("[NotificationManager] 請求通知權限中...");
+            Permission.RequestUserPermission("android.permission.POST_NOTIFICATIONS");
+        }
+        else
+        {
+            Debug.Log("[NotificationManager] 通知權限已授予");
+        }
+        
+        // 無論權限狀態如何，都嘗試排程通知
+        // Android 12 及以下版本不需要此權限
+        ScheduleDailyNotifications();
+    }
+
+    /// <summary>
+    /// 檢查通知權限狀態的回調
+    /// </summary>
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            // 當應用重新獲得焦點時，檢查權限狀態
+            if (Permission.HasUserAuthorizedPermission("android.permission.POST_NOTIFICATIONS"))
+            {
+                Debug.Log("[NotificationManager] 通知權限已啟用，確保通知已排程");
+                // 確保通知已排程
+                ScheduleDailyNotifications();
+            }
+        }
+    }
+#endif
 
     public void ScheduleDailyNotifications()
     {

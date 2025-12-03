@@ -64,7 +64,7 @@ public class FileManager : MonoBehaviour
             message = e.conversation.resultConversation,
             timestamp = System.DateTime.Now
         });
-        SaveChatHistory(data.messages, data.conversationData);
+        SaveChatHistory(data.messages, data.conversationData, data.affinity);
     }
     private void onRecieveMessage(newAIMessageEvent e)
     {
@@ -80,7 +80,7 @@ public class FileManager : MonoBehaviour
             message = e.aiMessage,
             timestamp = System.DateTime.Now
         });
-        SaveChatHistory(data.messages, e.conversationData);   
+        SaveChatHistory(data.messages, e.conversationData, data.affinity+e.affinity);   
     }
     /// <summary>
     /// 儲存聊天記錄到本地
@@ -89,7 +89,7 @@ public class FileManager : MonoBehaviour
     /// <param name="conversationData">對話摘要資料</param>
     /// <param name="fileName">檔案名稱</param>
     /// <returns>是否儲存成功</returns>
-    public bool SaveChatHistory(List<MessageModel> messageHistory, string conversationData, string fileName = "chat_history.json")
+    public bool SaveChatHistory(List<MessageModel> messageHistory, string conversationData, int affinity, string fileName = "chat_history.json")
     {
         try
         {
@@ -153,7 +153,7 @@ public class FileManager : MonoBehaviour
             };
 
             // 使用 SaveChatHistory 寫入檔案（會有內部錯誤處理）
-            SaveChatHistory(empty.messages, empty.conversationData, fileName);
+            SaveChatHistory(empty.messages, empty.conversationData, empty.affinity, fileName);
             return empty;
         }
         catch (System.Exception ex)

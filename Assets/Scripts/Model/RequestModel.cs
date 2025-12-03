@@ -140,6 +140,7 @@ public class ChatConversationRequestModel
     public string summary;
     public List<ChatMessageModel> message_history;
     public string message;
+    public int affinity;
 }
 
 /// <summary>
@@ -174,4 +175,5 @@ public class ChatConversationResponseModel
 {
     public string reply;
     public string summary;
+    public int affinity;
 }

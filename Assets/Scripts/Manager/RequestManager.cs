@@ -53,14 +53,14 @@ public class RequestManager : MonoBehaviour
         // 防護：避免當歷史訊息小於 10 時發生 GetRange 的例外
         int start = Mathf.Max(0, data.messages.Count - 10);
         List<MessageModel> range = data.messages.GetRange(start, data.messages.Count - start);
-        StartCoroutine(ConversationRequestCoroutine(e.userMessage, data.conversationData, range));
+        StartCoroutine(ConversationRequestCoroutine(e.userMessage, data.conversationData, data.affinity, range));
     }
 
 
     public bool allowInvalidCertificates = false; // 設為 true 以在行動裝置上暫時繞過憑證驗證（不安全，僅測試）
     public int requestTimeoutSeconds = 30;
 
-    public IEnumerator ConversationRequestCoroutine(string msg, string summary, List<MessageModel> messageHistory, string character = "")
+    public IEnumerator ConversationRequestCoroutine(string msg, string summary, int affinity, List<MessageModel> messageHistory, string character = "")
     {
         string url = "https://twswapi.cloudns.nz:2096/api/conversation";
         if (character != "")
@@ -83,7 +83,8 @@ public class RequestManager : MonoBehaviour
         {
             summary = summary ?? "",
             message_history = new List<ChatMessageModel>(),
-            message = msg
+            message = msg,
+            affinity = affinity 
         };
 
         // 轉換訊息歷史
@@ -135,7 +136,7 @@ public class RequestManager : MonoBehaviour
                     Debug.Log($"[RequestManager] 更新後的摘要: {response.summary}");
                     
                     // 發布聊天回應事件
-                    EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary));
+                    EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary, response.affinity));
                 }
             }
             catch (System.Exception ex)
