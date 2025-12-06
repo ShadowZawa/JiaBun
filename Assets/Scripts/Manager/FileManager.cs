@@ -80,7 +80,7 @@ public class FileManager : MonoBehaviour
             message = e.aiMessage,
             timestamp = System.DateTime.Now
         });
-        SaveChatHistory(data.messages, e.conversationData, data.affinity+e.affinity);   
+        SaveChatHistory(data.messages, e.conversationData, e.affinity);   
     }
     /// <summary>
     /// 儲存聊天記錄到本地
@@ -98,7 +98,8 @@ public class FileManager : MonoBehaviour
             MessageHistoryData historyData = new MessageHistoryData
             {
                 messages = messageHistory,
-                conversationData = conversationData
+                conversationData = conversationData,
+                affinity = affinity 
             };
 
             string json = JsonUtility.ToJson(historyData, true);

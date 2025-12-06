@@ -134,6 +134,7 @@ public class RequestManager : MonoBehaviour
                 {
                     Debug.Log($"[RequestManager] AI 回覆: {response.reply}");
                     Debug.Log($"[RequestManager] 更新後的摘要: {response.summary}");
+                    Debug.Log($"[RequestManager] 親和力: {response.affinity}");
                     
                     // 發布聊天回應事件
                     EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary, response.affinity));
