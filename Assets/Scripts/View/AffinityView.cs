@@ -4,8 +4,6 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 class AffinityView : MonoBehaviour

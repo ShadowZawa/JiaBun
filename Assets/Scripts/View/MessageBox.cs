@@ -88,7 +88,7 @@ public class MessageBox : MonoBehaviour
             MessageData data = messageQueue.Dequeue();
             messageText.text = data.message;
             messageText.color = data.color;
-            
+            if (messageText.GetComponent<BubbleViewFix>() != null) messageText.GetComponent<BubbleViewFix>().Init();   
             yield return new WaitForSeconds(data.time);
         }
 
