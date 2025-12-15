@@ -195,6 +195,7 @@ MonoBehaviour:
     - line: '|   androidMaxAspectRatio: 2.4'
     - line: '|   androidMinAspectRatio: 1'
     - line: '|   applicationIdentifier:'
+    - line: '|     Android: com.skywing.jiabun'
     - line: '|     Standalone: com.DefaultCompany.2D-URP'
     - line: '|   buildNumber:'
     - line: '|     Standalone: 0'

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281235321926",
+    "project_id": "jiabun-ab06f",
+    "storage_bucket": "jiabun-ab06f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281235321926:android:9fd7e7de6c03f1c04b4647",
+        "android_client_info": {
+          "package_name": "com.skywing.jiabun"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsa9JczRu0Iq2p1RJumYGNa2bNd_MiaKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
