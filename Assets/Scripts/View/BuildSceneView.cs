@@ -33,9 +33,9 @@ public class BuildSceneView : MonoBehaviour
     void onGetRestaurantMessage(RestaurantConversationRecievedEvent e)
     {
         // 檢查是否包含 \n，如果有則分割
-        if (e.conversation.resultConversation.Contains("[next_bubble]"))
+        if (e.conversation.resultConversation.Contains(",,,"))
         {
-            string[] parts = e.conversation.resultConversation.Split(new string[] { "[next_bubble]" }, System.StringSplitOptions.None);
+            string[] parts = e.conversation.resultConversation.Split(new string[] { ",,," }, System.StringSplitOptions.None);
             foreach (string part in parts)
             {
                 if (part != null)
@@ -57,7 +57,10 @@ public class BuildSceneView : MonoBehaviour
         //EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent($"定位完成", Color.black, 3));
         gpsButtonText.text = "";
     }
-    
+    public void onClickSuitButton()
+    {
+        SceneManager.LoadScene("suitScene");
+    }
     public void OnClickGPSButton()
     {
         GPSManager.instance.getLocationRequest();
@@ -69,10 +72,10 @@ public class BuildSceneView : MonoBehaviour
     public void OnAIMessage(newAIMessageEvent e)
     {
 
-        // 檢查是否包含 \n，如果有則分割
-        if (e.aiMessage.Contains("[next_bubble]"))
+        // 檢查是否包含要分割符號如果有則分割
+        if (e.aiMessage.Contains(",,,"))
         {
-            string[] parts = e.aiMessage.Split(new string[] { "[next_bubble]" }, System.StringSplitOptions.None);
+            string[] parts = e.aiMessage.Split(new string[] { ",,," }, System.StringSplitOptions.None);
             foreach (string part in parts)
             {
                 if (part != null)
@@ -135,6 +138,11 @@ public class BuildSceneView : MonoBehaviour
             EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("聊天記錄已清除", Color.black, 2));
             return;
         }
+        if (RequestManager.instance.is_thinking)
+        {
+            EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("哎呀~不要這麼急嗎~", Color.black, 1));
+            return;
+        }
         if (messageInputField.text.Contains("吃什麼") || messageInputField.text.Contains("吃甚麼") || messageInputField.text.Contains("要吃") || messageInputField.text.Contains("想吃") || messageInputField.text.Contains("吃啥") || messageInputField.text.Contains("餐廳") || messageInputField.text.Contains("午餐") || messageInputField.text.Contains("晚餐") || messageInputField.text.Contains("早餐") || messageInputField.text.Contains("宵夜") || messageInputField.text.Contains("甜點") || messageInputField.text.Contains("附近美食"))
         {
             if (GPSManager.instance.has_located)
@@ -155,15 +163,12 @@ public class BuildSceneView : MonoBehaviour
                 return;
             }
         }
-        if (RequestManager.instance.is_thinking)
-        {
-            EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("哎呀~不要這麼急嗎~", Color.black, 1));
-        }
-        if (messageInputField.text != "")
-        {
-            if (messageInputField.text == "") return;
-            EventBus.Instance.Publish<newUserMessageEvent>(new newUserMessageEvent(messageInputField.text));
-            messageInputField.text = "";
-        }
+        
+            if (messageInputField.text != "")
+            {
+                if (messageInputField.text == "") return;
+                EventBus.Instance.Publish<newUserMessageEvent>(new newUserMessageEvent(messageInputField.text));
+                messageInputField.text = "";
+            }
     }
 }

@@ -19,11 +19,11 @@ public class NewChatView : MonoBehaviour
 
     void AddChat(string message, bool isUser)
     {
-        if (string.IsNullOrEmpty(message)) return;
+        if (string.IsNullOrEmpty(message)) return; 
 
-        if (message.Contains("[next_bubble]"))
+        if (message.Contains(",,,"))
         {
-            string[] parts = message.Split(new string[] { "[next_bubble]" }, System.StringSplitOptions.None);
+            string[] parts = message.Split(new string[] { ",,," }, System.StringSplitOptions.None);
             foreach (string part in parts)
             {
                 if (!string.IsNullOrWhiteSpace(part))

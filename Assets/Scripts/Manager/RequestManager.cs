@@ -67,17 +67,16 @@ public class RequestManager : MonoBehaviour
         {
             url += $"?character={UnityWebRequest.EscapeURL(character)}";
         }
-        Debug.Log($"[RequestManager] 正在請求聊天對話: {url}");
+        Debug.Log($"正在請求聊天對話: {url}");
 
         // 檢查裝置網路狀態
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             is_thinking = false;
-            Debug.LogError("[RequestManager] 無網路連線，請檢查裝置網路設定");
+            Debug.LogError("無網路連線，請檢查裝置網路設定");
             EventBus.Instance.Publish(new showMessageBoxEvent("無網路連線", Color.red, 2));
             yield break;
         }
-
         // 建立對話請求資料
         ChatConversationRequestModel requestData = new ChatConversationRequestModel
         {
@@ -107,20 +106,9 @@ public class RequestManager : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
         request.timeout = requestTimeoutSeconds;
-
-        // 若需要可選擇性繞過憑證驗證（用於測試自簽章或憑證錯誤）
-        if (allowInvalidCertificates)
-        {
-            request.certificateHandler = new BypassCertificate();
-            Debug.LogWarning("[RequestManager] allowInvalidCertificates = true，已暫時繞過憑證驗證（不安全，僅供測試）");
-        }
-        
         yield return request.SendWebRequest();
-        // 當 request 完成後，先記得重設 thinking 標記
         is_thinking = false;
-
-        Debug.Log($"[RequestManager] Request result: {request.result}, responseCode: {request.responseCode}, error: {request.error}");
-
+        Debug.Log($"Request result: {request.result}, responseCode: {request.responseCode}, error: {request.error}");
         if (request.result == UnityWebRequest.Result.Success)
         {
             string responseData = request.downloadHandler.text;
@@ -132,9 +120,9 @@ public class RequestManager : MonoBehaviour
                 
                 if (response != null)
                 {
-                    Debug.Log($"[RequestManager] AI 回覆: {response.reply}");
-                    Debug.Log($"[RequestManager] 更新後的摘要: {response.summary}");
-                    Debug.Log($"[RequestManager] 親和力: {response.affinity}");
+                    Debug.Log($"AI 回覆: {response.reply}");
+                    Debug.Log($"更新後的印象: {response.summary}");
+                    Debug.Log($"好感度: {response.affinity}");
                     
                     // 發布聊天回應事件
                     EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary, response.affinity));
@@ -144,13 +132,13 @@ public class RequestManager : MonoBehaviour
             {
                 //MessageBox.Show($"與伺服器連接失敗 請重試");
                 EventBus.Instance.Publish(new showMessageBoxEvent("與伺服器連接失敗 請重試", Color.red, 2));
-                Debug.LogError($"[RequestManager] 聊天回應解析失敗: {ex.Message}");
+                Debug.LogError($"聊天回應解析失敗: {ex.Message}");
             }
         }
         else
         {
-            Debug.LogError($"[RequestManager] 聊天對話請求失敗: {request.error}");
-            Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
+            Debug.LogError($"聊天對話請求失敗: {request.error}");
+            Debug.LogError($"回應碼: {request.responseCode}");
 
             // 若 responseCode == 0 且有錯誤訊息，可能為 TLS/SSL 或網路層級錯誤
             if (request.responseCode == 0)

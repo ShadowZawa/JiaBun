@@ -105,12 +105,12 @@ public class FileManager : MonoBehaviour
             string json = JsonUtility.ToJson(historyData, true);
             File.WriteAllText(savePath, json);
             
-            Debug.Log($"[FileManager] 聊天記錄已儲存至 {savePath} ({messageHistory.Count} 則訊息)");
+            Debug.Log($"聊天記錄已儲存至 {savePath} ({messageHistory.Count} 則訊息)");
             return true;
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"[FileManager] 儲存聊天記錄失敗: {ex.Message}");
+            Debug.LogError($"儲存聊天記錄失敗: {ex.Message}");
             return false;
         }
     }

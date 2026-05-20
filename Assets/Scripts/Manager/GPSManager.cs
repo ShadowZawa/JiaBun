@@ -77,17 +77,15 @@ public class GPSManager : MonoBehaviour
             yield break;
         }
 #endif
-        // setup loc
+        //設定起始位置
         UnityEngine.Input.location.Start(500f, 500f);
-
-        // setup max wait time
+        //等待取得位置
         int maxWait = 15;
         while (UnityEngine.Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {
             yield return new WaitForSecondsRealtime(1);
             maxWait--;
         }
-
         // check if reach wait max
 #if UNITY_EDITOR
         int editorMaxWait = 15;

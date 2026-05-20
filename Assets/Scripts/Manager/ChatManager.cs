@@ -53,9 +53,9 @@ public class ChatManager : MonoBehaviour
         MessageHistoryData data = FileManager.Instance.LoadChatHistory();
         foreach (MessageModel d in data.messages){
             // 檢查是否包含 \n，如果有則分割
-            if (d.message.Contains("[next_bubble]"))
+            if (d.message.Contains(",,,"))
             {
-                string[] parts = d.message.Split(new string[] { "[next_bubble]" }, System.StringSplitOptions.None);
+                string[] parts = d.message.Split(new string[] { ",,," }, System.StringSplitOptions.None);
                 foreach (string part in parts)
                 {
                     if (part != null)
@@ -85,9 +85,9 @@ public class ChatManager : MonoBehaviour
         }
     }
     public void getMessage(newAIMessageEvent e){
-        if (e.aiMessage.Contains("[next_bubble]"))
+        if (e.aiMessage.Contains(",,,"))
         {
-            string[] parts = e.aiMessage.Split(new string[] { "[next_bubble]" }, System.StringSplitOptions.None);
+            string[] parts = e.aiMessage.Split(new string[] { ",,," }, System.StringSplitOptions.None);
             foreach (string part in parts)
             {
                 if (part != null)
