@@ -15,43 +15,22 @@ public class BuildSceneView : MonoBehaviour
     public UnityEngine.UI.Button GoToButton;
     void Start()
     {
+        EventBus.Instance.Subscribe<mapURLUpdateEvent>(OnMapUrlUpdated);
         EventBus.Instance.Subscribe<newAIMessageEvent>(OnAIMessage);
         EventBus.Instance.Subscribe<GPSRecievedEvent>(onGetGPS);
-        EventBus.Instance.Subscribe<RestaurantConversationRecievedEvent>(onGetRestaurantMessage);
         EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("嗨嗨~", Color.black, 5));
-        InvokeRepeating("updateUrlButton", 1f, 5f);
+        InvokeRepeating(nameof(RefreshGoToButton), 1f, 5f);
     }
     void OnDestroy()
     {
         if (EventBus.Instance != null)
         {
+            EventBus.Instance.Unsubscribe<mapURLUpdateEvent>(OnMapUrlUpdated);
             EventBus.Instance.Unsubscribe<newAIMessageEvent>(OnAIMessage);
             EventBus.Instance.Unsubscribe<GPSRecievedEvent>(onGetGPS);
-            EventBus.Instance.Unsubscribe<RestaurantConversationRecievedEvent>(onGetRestaurantMessage);
         }
     }
-    void onGetRestaurantMessage(RestaurantConversationRecievedEvent e)
-    {
-        // 檢查是否包含 \n，如果有則分割
-        if (e.conversation.resultConversation.Contains(",,,"))
-        {
-            string[] parts = e.conversation.resultConversation.Split(new string[] { ",,," }, System.StringSplitOptions.None);
-            foreach (string part in parts)
-            {
-                if (part != null)
-                {
-                    EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(part, Color.black, 5));
-
-                }
-            }
-        }
-        else
-        {
-            EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(e.conversation.resultConversation, Color.black, 8));
-
-        }
-        //EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(e.conversation.resultConversation, Color.black, 5));
-    }
+    
     void onGetGPS(GPSRecievedEvent e)
     {
         //EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent($"定位完成", Color.black, 3));
@@ -78,12 +57,12 @@ public class BuildSceneView : MonoBehaviour
             string[] parts = e.aiMessage.Split(new string[] { ",,," }, System.StringSplitOptions.None);
             foreach (string part in parts)
             {
-                if (part != null)
+                if (part != null) 
                 {
                     EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent(part, Color.black, 5));
 
                 }
-            }
+            } 
         }
         else
         {
@@ -92,17 +71,26 @@ public class BuildSceneView : MonoBehaviour
         }
         
     }
+    public string map_url="";
+    void OnMapUrlUpdated(mapURLUpdateEvent e)
+    {
+        map_url = e.mapURL;
+        RefreshGoToButton();
+    }
 
-    void updateUrlButton(){
-        
-        if (RequestManager.instance.restaurant_url != ""){
+    void RefreshGoToButton()
+    {
+        if (map_url != "")
+        {
             GoToButton.gameObject.SetActive(true);
             GoToButton.onClick.RemoveAllListeners();
-            GoToButton.onClick.AddListener(() => {
-                Application.OpenURL(RequestManager.instance.restaurant_url);
+            GoToButton.onClick.AddListener(() =>
+            {
+                Application.OpenURL(map_url);
             });
         }
-        else{
+        else
+        {
             GoToButton.gameObject.SetActive(false);
         }
     }
@@ -143,7 +131,7 @@ public class BuildSceneView : MonoBehaviour
             EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("哎呀~不要這麼急嗎~", Color.black, 1));
             return;
         }
-        if (messageInputField.text.Contains("吃什麼") || messageInputField.text.Contains("吃甚麼") || messageInputField.text.Contains("要吃") || messageInputField.text.Contains("想吃") || messageInputField.text.Contains("吃啥") || messageInputField.text.Contains("餐廳") || messageInputField.text.Contains("午餐") || messageInputField.text.Contains("晚餐") || messageInputField.text.Contains("早餐") || messageInputField.text.Contains("宵夜") || messageInputField.text.Contains("甜點") || messageInputField.text.Contains("附近美食"))
+        /*if (messageInputField.text.Contains("吃什麼") || messageInputField.text.Contains("吃甚麼") || messageInputField.text.Contains("要吃") || messageInputField.text.Contains("想吃") || messageInputField.text.Contains("吃啥") || messageInputField.text.Contains("餐廳") || messageInputField.text.Contains("午餐") || messageInputField.text.Contains("晚餐") || messageInputField.text.Contains("早餐") || messageInputField.text.Contains("宵夜") || messageInputField.text.Contains("甜點") || messageInputField.text.Contains("附近美食"))
         {
             if (GPSManager.instance.has_located)
             {
@@ -162,7 +150,7 @@ public class BuildSceneView : MonoBehaviour
                 EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("我找不到你的位置呢~ 請先點右上角的gps圖標呦", Color.black, 3));
                 return;
             }
-        }
+        }*/
         
             if (messageInputField.text != "")
             {

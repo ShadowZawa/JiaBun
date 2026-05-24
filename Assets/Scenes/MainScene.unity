@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5875, y: 0.11400001}
   m_AnchorMax: {x: 0.89625007, y: 0.201}
-  m_AnchoredPosition: {x: -0.000015258789, y: 168.18964}
+  m_AnchoredPosition: {x: 0, y: 168.1897}
   m_SizeDelta: {x: 1.965271, y: 8.909058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66587157
@@ -916,6 +916,7 @@ MonoBehaviour:
   gpsButtonText: {fileID: 2099590494}
   SettingPanel: {fileID: 1636491322}
   GoToButton: {fileID: 1816973983}
+  map_url: 
 --- !u!1 &390787796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,7 +4313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RequestManager
   is_thinking: 0
-  restaurant_url: 
   allowInvalidCertificates: 0
   requestTimeoutSeconds: 30
 --- !u!4 &1544258825
@@ -4726,7 +4726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1816973982
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4744,7 +4744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052500002, y: 0.12956758}
   m_AnchorMax: {x: 0.32500002, y: 0.18124327}
-  m_AnchoredPosition: {x: -0.23841715, y: 170.29506}
+  m_AnchoredPosition: {x: -0.23840332, y: 170.29506}
   m_SizeDelta: {x: -1.012001, y: -3.1049957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816973983
@@ -5481,6 +5481,7 @@ GameObject:
   - component: {fileID: 2048008226}
   - component: {fileID: 2048008225}
   - component: {fileID: 2048008229}
+  - component: {fileID: 2048008230}
   m_Layer: 0
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -5654,11 +5655,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048008223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ab9c5d32af93c45ae0a61820877818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputFieldFix
+--- !u!114 &2048008230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048008223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732b739024d3c944da136bb6a51c13da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::NativeEditBox
+  returnButtonType: 0
+  showClearButton: 1
+  switchBetweenNativeAndUnity: 0
 --- !u!1 &2099590492
 GameObject:
   m_ObjectHideFlags: 0

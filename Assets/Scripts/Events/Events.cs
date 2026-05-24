@@ -1,7 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
+public class mapURLUpdateEvent
+{
+    public string mapURL;
+    public mapURLUpdateEvent(string url)
+    {
+        mapURL = url;
+    }
+}
 
 [System.Serializable]
 public class GPSRecievedEvent
@@ -35,25 +43,5 @@ public class showMessageBoxEvent
         message = msg;
         color = col ?? Color.red;
         time = t ?? 3;
-    }
-}
-public class RestaurantDataReceivedEvent
-{
-    public RequestPlacesModel places;
-    public string message;
-    public RestaurantDataReceivedEvent(RequestPlacesModel model, string msg)
-    {
-        places = model;
-        message = msg;
-    }
-}
-public class RestaurantConversationRecievedEvent
-{
-    public string oldMessage;
-    public ConversationResponseModel conversation;
-    public RestaurantConversationRecievedEvent(ConversationResponseModel model, string msg)
-    {
-        conversation = model;
-        oldMessage = msg;
     }
 }

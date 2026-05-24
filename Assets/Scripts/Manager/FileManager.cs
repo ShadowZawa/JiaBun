@@ -37,7 +37,6 @@ public class FileManager : MonoBehaviour
     void Start()
     {
         EventBus.Instance.Subscribe<newAIMessageEvent>(onRecieveMessage);
-        EventBus.Instance.Subscribe<RestaurantConversationRecievedEvent>(onRecieveRestaurantMessage);
     }
 
     void OnDestroy()
@@ -45,27 +44,9 @@ public class FileManager : MonoBehaviour
         if (EventBus.Instance != null)
         {
             EventBus.Instance.Unsubscribe<newAIMessageEvent>(onRecieveMessage);
-            EventBus.Instance.Unsubscribe<RestaurantConversationRecievedEvent>(onRecieveRestaurantMessage);
         }
     }
-    private void onRecieveRestaurantMessage(RestaurantConversationRecievedEvent e)
-    {
-        // 儲存餐廳對話記錄
-        MessageHistoryData data = LoadChatHistory();
-        data.messages.Add(new MessageModel
-        {
-            sender = MessageModel.SenderType.User,
-            message = e.oldMessage,
-            timestamp = System.DateTime.Now
-        });
-        data.messages.Add(new MessageModel
-        {
-            sender = MessageModel.SenderType.AI,
-            message = e.conversation.resultConversation,
-            timestamp = System.DateTime.Now
-        });
-        SaveChatHistory(data.messages, data.conversationData, data.affinity);
-    }
+    
     private void onRecieveMessage(newAIMessageEvent e)
     {
         MessageHistoryData data = LoadChatHistory();

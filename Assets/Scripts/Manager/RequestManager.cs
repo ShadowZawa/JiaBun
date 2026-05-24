@@ -23,8 +23,6 @@ public class RequestManager : MonoBehaviour
     void Start()
     {
         EventBus.Instance.Subscribe<newUserMessageEvent>(SendChatConversation);
-        EventBus.Instance.Subscribe<newRestaurantRequestEvent>(getRestaurant);
-        EventBus.Instance.Subscribe<RestaurantDataReceivedEvent>(getRestaurantConversation);
     }
 
     void OnDestroy()
@@ -32,8 +30,6 @@ public class RequestManager : MonoBehaviour
         if (EventBus.Instance != null)
         {
             EventBus.Instance.Unsubscribe<newUserMessageEvent>(SendChatConversation);
-            EventBus.Instance.Unsubscribe<newRestaurantRequestEvent>(getRestaurant);
-            EventBus.Instance.Unsubscribe<RestaurantDataReceivedEvent>(getRestaurantConversation);
         }
     }
     /// <summary>
@@ -43,7 +39,6 @@ public class RequestManager : MonoBehaviour
     /// <param name="summary">對話摘要</param>
     /// <param name="messageHistory">訊息歷史</param>
     public bool is_thinking = false;
-    public string restaurant_url = "";
     public void SendChatConversation(newUserMessageEvent e)
     {
         if (is_thinking) return;
@@ -66,6 +61,10 @@ public class RequestManager : MonoBehaviour
         if (character != "")
         {
             url += $"?character={UnityWebRequest.EscapeURL(character)}";
+        }
+        if (GPSManager.instance.latitude != 0 && GPSManager.instance.longitude != 0)
+        {
+            url += (character == "" ? "?" : "&") + $"latitude={GPSManager.instance.latitude}&longitude={GPSManager.instance.longitude}";
         }
         Debug.Log($"正在請求聊天對話: {url}");
 
@@ -125,6 +124,11 @@ public class RequestManager : MonoBehaviour
                     Debug.Log($"好感度: {response.affinity}");
                     
                     // 發布聊天回應事件
+                    if (response.map_url != "")
+                    {
+                        EventBus.Instance.Publish<mapURLUpdateEvent>(new mapURLUpdateEvent(response.map_url));
+                        Debug.Log($"地圖 URL: {response.map_url}");
+                    }
                     EventBus.Instance.Publish<newAIMessageEvent>(new newAIMessageEvent(response.reply, msg, response.summary, response.affinity));
                 }
             }
@@ -166,36 +170,6 @@ public class RequestManager : MonoBehaviour
 
 
 
-    // 儲存當前的餐廳資料
-    private RequestPlacesModel currentPlacesData;
-    
-    /// <summary>
-    /// 取得當前的餐廳清單
-    /// </summary>
-    public List<PlaceModel> GetCurrentPlaces()
-    {
-        return currentPlacesData?.places;
-    }
-
-    /// <summary>
-    /// 取得特定索引的餐廳資料
-    /// </summary>
-    public PlaceModel GetPlace(int index)
-    {
-        if (currentPlacesData?.places != null && index >= 0 && index < currentPlacesData.places.Count)
-        {
-            return currentPlacesData.places[index];
-        }
-        return null;
-    }
-
-    /// <summary>
-    /// 取得餐廳數量
-    /// </summary>
-    public int GetPlacesCount()
-    {
-        return currentPlacesData?.places?.Count ?? 0;
-    }
 
     public void Awake()
     {
@@ -210,202 +184,5 @@ public class RequestManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 根據經緯度取得附近的餐廳
-    /// </summary>
-    /// <param name="latitude">緯度</param>
-    /// <param name="longitude">經度</param>
-    /// <param name="radius">搜尋半徑（公尺），預設 1000</param>
-    /// 
-    public void getRestaurant(newRestaurantRequestEvent e)
-    {
-        float latitude = GPSManager.instance.latitude;
-        float longitude = GPSManager.instance.longitude;
-        int radius = 1000;
-
-        StartCoroutine(GetRestaurantCoroutine(latitude, longitude, radius, e.userMessage));
-        /*RequestPlacesModel testModel = new RequestPlacesModel
-        {
-            places = new List<PlaceModel>{
-                new PlaceModel
-                {
-                    displayName = "測試餐廳 A",
-                    rating = 4.5f,
-                    googleMapsUri = "https://maps.google.com/?q=Test+Restaurant+A",
-                    openNow = true,
-                    startPrice = "10",
-                    endPrice = "50",
-                    currencyCode = "TWD"
-                },
-                new PlaceModel
-                {
-                    displayName = "測試餐廳 B",
-                    rating = 4.0f,
-                    googleMapsUri = "https://maps.google.com/?q=Test+Restaurant+B",
-                    openNow = false,
-                    startPrice = "20",
-                    endPrice = "100",
-                    currencyCode = "TWD"
-                }
-            }
-        };
-        currentPlacesData = testModel;
-        EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(testModel));
-        */
-    }
-
-    /// <summary>
-    /// 向 AI 發送對話請求，取得餐廳推薦
-    /// </summary>
-    /// <param name="model">餐廳資料模型</param>
-    /// <param name="previousData">先前的對話資料（可選）</param>
-    public void getRestaurantConversation(RestaurantDataReceivedEvent e)
-    {
-        MessageHistoryData data = FileManager.Instance.LoadChatHistory();
-        StartCoroutine(GetRestaurantConversationCoroutine(e.places, data.conversationData, e.message));
-    }
-
-    public IEnumerator GetRestaurantConversationCoroutine(RequestPlacesModel model, string previousData, string msg)
-    {
-        
-
-        // 建立對話請求資料
-        print(previousData);
-        ConversationRequestModel requestData = new ConversationRequestModel
-        {
-            PreviousData = previousData,
-            message = msg,
-            choice = new List<ConversationChoice>()
-        };
-
-        // 轉換餐廳資料為對話選項格式
-        if (model?.places != null)
-        {
-            for (int i = 0; i < model.places.Count; i++)
-            {
-                ConversationChoice choice = new ConversationChoice
-                {
-                    ID = i,
-                    displayName = model.places[i].displayName
-                };
-                requestData.choice.Add(choice);
-            }
-        }
-
-        string jsonData = JsonUtility.ToJson(requestData);
-        UnityWebRequest request = new UnityWebRequest("https://twswapi.cloudns.nz:2096/api/restaurant", "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
-
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string responseData = request.downloadHandler.text;
-            Debug.Log($"[RequestManager] AI 對話回應成功: {responseData}");
-
-            try
-            {
-                ConversationResponseModel response = JsonUtility.FromJson<ConversationResponseModel>(responseData);
-                if (response != null)
-                { 
-                    restaurant_url = model.places[response.resultIndex].googleMapsUri;   
-                    Debug.Log($"[RequestManager] AI 推薦餐廳 Index: {response.resultIndex}");
-                    Debug.Log($"[RequestManager] AI 回應: {response.resultConversation}");
-                    Debug.Log($"[RequestManager] 新的對話資料: {response.newData}");
-                    EventBus.Instance.Publish<RestaurantConversationRecievedEvent>(new RestaurantConversationRecievedEvent(response, msg));
-                }
-            }
-            catch (System.Exception ex)
-            {
-                is_thinking = false;
-                EventBus.Instance.Publish(new showMessageBoxEvent("與伺服器連接失敗 請重試" + ex.Message, Color.red, 2));
-                Debug.LogError($"[RequestManager] 對話回應解析失敗: {ex.Message}");
-            }
-        }
-        else
-        {
-            is_thinking = false;
-            EventBus.Instance.Publish(new showMessageBoxEvent("AI 對話請求失敗 請重試" + request.responseCode, Color.red, 2));
-            Debug.LogError($"[RequestManager] 回應碼: {request.responseCode}");
-        }
-
-        request.Dispose();
-    }
-
-    private IEnumerator GetRestaurantCoroutine(float latitude, float longitude, int radius, string message = "")
-    {
-        string url = $"https://twswapi.cloudns.nz:2096/api/getnearby?latitude={latitude}&longitude={longitude}&radius={radius}";
-        Debug.Log($"[RequestManager] 正在請求餐廳資料: {url}");
-
-        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
-        yield return request.SendWebRequest();
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string jsonData = request.downloadHandler.text;
-            Debug.Log($"[RequestManager] 成功接收到餐廳資料: {jsonData}");
-            
-            // 解析 JSON 資料
-            try
-            {
-                currentPlacesData = JsonUtility.FromJson<RequestPlacesModel>(jsonData);
-                
-                if (currentPlacesData?.places != null)
-                {
-                    Debug.Log($"[RequestManager] 成功解析 {currentPlacesData.places.Count} 間餐廳");
-                    
-                    // 輸出餐廳資訊（除錯用）
-                    LogPlacesInfo();
-                    
-                    // 發布事件通知其他組件
-                    EventBus.Instance.Publish<RestaurantDataReceivedEvent>(new RestaurantDataReceivedEvent(currentPlacesData, message));
-                }
-                else
-                {
-                    Debug.LogWarning("[RequestManager] 餐廳清單為空");
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"[RequestManager] JSON 解析失敗: {ex.Message}");
-            }
-        }
-        else
-        {
-            Debug.LogError($"[RequestManager] 請求餐廳資料失敗: {request.error}");
-        }
-        
-        request.Dispose();
-    }
-
-    /// <summary>
-    /// 輸出餐廳資訊到 Console（除錯用）
-    /// </summary>
-    private void LogPlacesInfo()
-    {
-        if (currentPlacesData?.places == null) return;
-
-        Debug.Log("========== 餐廳清單 ==========");
-        for (int i = 0; i < currentPlacesData.places.Count; i++)
-        {
-            PlaceModel place = currentPlacesData.places[i];
-            Debug.Log($"[{i}] {place.displayName}");
-            Debug.Log($"    評分: {place.GetRatingText()}");
-            Debug.Log($"    營業狀態: {(place.IsOpen() ? "營業中" : "未營業或未知")}");
-            Debug.Log($"    價格範圍: {place.GetPriceRangeText()}");
-            Debug.Log($"    Google Maps: {place.googleMapsUri}");
-        }
-        Debug.Log("==============================");
-    }
-
-    /// <summary>
-    /// 清除當前的餐廳資料
-    /// </summary>
-    public void ClearPlacesData()
-    {
-        currentPlacesData = null;
-        Debug.Log("[RequestManager] 餐廳資料已清除");
-    }
+    
 }
