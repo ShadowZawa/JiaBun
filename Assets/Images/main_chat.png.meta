@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 72361e993762f9143872b9e7faf6503d
+guid: b6e9987b4227afc48b6b81ec2cfbef35
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 992382622039024844
-    second: microphone_0
-  - first:
-      213: 6303677851890919853
-    second: microphone_1
+      213: 4301471977758516525
+    second: main_chat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: microphone_0
+      name: main_chat_0
       rect:
         serializedVersion: 2
-        x: 81
-        y: 39
-        width: 159
-        height: 122
+        x: 0
+        y: 0
+        width: 168
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,30 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc428e3acb6a5cd00800000000000000
-      internalID: 992382622039024844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: microphone_1
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 104
-        width: 95
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da9a474ab992b7750800000000000000
-      internalID: 6303677851890919853
+      spriteID: d25e79d39f5e1bb30800000000000000
+      internalID: 4301471977758516525
       vertices: []
       indices: 
       edges: []
@@ -199,8 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      microphone_0: 992382622039024844
-      microphone_1: 6303677851890919853
+      main_chat_0: 4301471977758516525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

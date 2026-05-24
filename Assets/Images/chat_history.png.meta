@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 87230de2aaa80c64a862faf04967a67f
+guid: 0724448786ac6fa4086487914127c2ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1792577780949043070
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_0
+      213: -1055439463047910356
+    second: chat_history_0
   - first:
-      213: 3672975690773793354
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_1
+      213: -9032318410603426523
+    second: chat_history_1
   - first:
-      213: -2809029801047179349
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_2
+      213: -1797864919241803817
+    second: chat_history_2
   - first:
-      213: 280432660086472463
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_3
+      213: 1817325998363086611
+    second: chat_history_3
   - first:
-      213: 9039786811626750176
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_4
+      213: -122236274420803817
+    second: chat_history_4
   - first:
-      213: 3485316830564332276
-    second: 4c83e344-a029-404f-af30-2ba6ff452485_5
+      213: -3263569578011727277
+    second: chat_history_5
+  - first:
+      213: 2541188897783097173
+    second: chat_history_6
+  - first:
+      213: -7010861286650634328
+    second: chat_history_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -154,13 +160,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_0
+      name: chat_history_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 689
-        width: 230
-        height: 230
+        x: 41
+        y: 43
+        width: 49
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2883646710c7f17e0800000000000000
-      internalID: -1792577780949043070
+      spriteID: c2ca91b76635a51f0800000000000000
+      internalID: -1055439463047910356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_1
+      name: chat_history_1
       rect:
         serializedVersion: 2
-        x: 292
-        y: 689
-        width: 230
-        height: 230
+        x: 11
+        y: 8
+        width: 27
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4a87353ee709f230800000000000000
-      internalID: 3672975690773793354
+      spriteID: 52d03c5c242c6a280800000000000000
+      internalID: -9032318410603426523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_2
+      name: chat_history_2
       rect:
         serializedVersion: 2
-        x: 29
-        y: 392
-        width: 230
-        height: 231
+        x: 16
+        y: 7
+        width: 22
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +219,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bafb81167425409d0800000000000000
-      internalID: -2809029801047179349
+      spriteID: 7d7b476a163bc07e0800000000000000
+      internalID: -1797864919241803817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_3
+      name: chat_history_3
       rect:
         serializedVersion: 2
-        x: 292
-        y: 392
-        width: 230
-        height: 231
+        x: 39
+        y: 7
+        width: 26
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +241,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0f3fdfb40c44e300800000000000000
-      internalID: 280432660086472463
+      spriteID: 31f838ded50783910800000000000000
+      internalID: 1817325998363086611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_4
+      name: chat_history_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 551
-        height: 327
+        x: 65
+        y: 7
+        width: 28
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e00648d536c37d70800000000000000
-      internalID: 9039786811626750176
+      spriteID: 7171b7c81cabd4ef0800000000000000
+      internalID: -122236274420803817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4c83e344-a029-404f-af30-2ba6ff452485_5
+      name: chat_history_5
       rect:
         serializedVersion: 2
-        x: 29
-        y: 96
-        width: 231
-        height: 231
+        x: 93
+        y: 8
+        width: 7
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +285,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f23a7ff0355e5030800000000000000
-      internalID: 3485316830564332276
+      spriteID: 35ae6da82c875b2d0800000000000000
+      internalID: -3263569578011727277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chat_history_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 11
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5572787b6dd144320800000000000000
+      internalID: 2541188897783097173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chat_history_7
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 7
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8af96af0eca64be90800000000000000
+      internalID: -7010861286650634328
       vertices: []
       indices: 
       edges: []
@@ -289,7 +339,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -299,12 +349,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      4c83e344-a029-404f-af30-2ba6ff452485_0: -1792577780949043070
-      4c83e344-a029-404f-af30-2ba6ff452485_1: 3672975690773793354
-      4c83e344-a029-404f-af30-2ba6ff452485_2: -2809029801047179349
-      4c83e344-a029-404f-af30-2ba6ff452485_3: 280432660086472463
-      4c83e344-a029-404f-af30-2ba6ff452485_4: 9039786811626750176
-      4c83e344-a029-404f-af30-2ba6ff452485_5: 3485316830564332276
+      chat_history_0: -1055439463047910356
+      chat_history_1: -9032318410603426523
+      chat_history_2: -1797864919241803817
+      chat_history_3: 1817325998363086611
+      chat_history_4: -122236274420803817
+      chat_history_5: -3263569578011727277
+      chat_history_6: 2541188897783097173
+      chat_history_7: -7010861286650634328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

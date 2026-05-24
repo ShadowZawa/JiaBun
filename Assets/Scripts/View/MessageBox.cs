@@ -15,6 +15,7 @@ using UnityEngine;
 public class MessageBox : MonoBehaviour
 {
     public TextMeshProUGUI messageText;
+    private EventBus eventBus;
     private Queue<MessageData> messageQueue = new Queue<MessageData>();
     private bool isDisplaying = false;
     private Coroutine displayCoroutine; // 儲存當前顯示協程的引用
@@ -33,10 +34,35 @@ public class MessageBox : MonoBehaviour
         }
     }
     
+    void Awake()
+    {
+        if (messageText == null)
+        {
+            messageText = GetComponentInChildren<TextMeshProUGUI>(true);
+        }
+    }
+
     void Start()
     {
-        EventBus.Instance.Subscribe<showMessageBoxEvent>(showMessageBox);
-        messageText.text = "";
+        eventBus = EventBus.Instance;
+
+        if (eventBus != null)
+        {
+            eventBus.Subscribe<showMessageBoxEvent>(showMessageBox);
+        }
+        else
+        {
+            Debug.LogError("MessageBox could not find an EventBus instance.", this);
+        }
+
+        if (messageText != null)
+        {
+            messageText.text = "";
+        }
+        else
+        {
+            Debug.LogError("MessageBox requires a TextMeshProUGUI reference.", this);
+        }
         
     }
     
@@ -45,9 +71,9 @@ public class MessageBox : MonoBehaviour
         // 停止所有協程，避免在物件銷毀後繼續執行
         StopAllCoroutines();
         
-        if (EventBus.Instance != null)
+        if (eventBus != null)
         {
-            EventBus.Instance.Unsubscribe<showMessageBoxEvent>(showMessageBox);
+            eventBus.Unsubscribe<showMessageBoxEvent>(showMessageBox);
         }
     }
     public void nextBox()
@@ -82,6 +108,12 @@ public class MessageBox : MonoBehaviour
     private IEnumerator DisplayMessages()
     {
         isDisplaying = true;
+
+        if (messageText == null)
+        {
+            isDisplaying = false;
+            yield break;
+        }
 
         while (messageQueue.Count > 0)
         {
