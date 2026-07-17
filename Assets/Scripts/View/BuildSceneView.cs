@@ -131,26 +131,6 @@ public class BuildSceneView : MonoBehaviour
             EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("哎呀~不要這麼急嗎~", Color.black, 1));
             return;
         }
-        /*if (messageInputField.text.Contains("吃什麼") || messageInputField.text.Contains("吃甚麼") || messageInputField.text.Contains("要吃") || messageInputField.text.Contains("想吃") || messageInputField.text.Contains("吃啥") || messageInputField.text.Contains("餐廳") || messageInputField.text.Contains("午餐") || messageInputField.text.Contains("晚餐") || messageInputField.text.Contains("早餐") || messageInputField.text.Contains("宵夜") || messageInputField.text.Contains("甜點") || messageInputField.text.Contains("附近美食"))
-        {
-            if (GPSManager.instance.has_located)
-            {
-                if (RequestManager.instance.is_thinking)
-                {
-                    EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("哎呀~ 不要那麼急~", Color.yellow, 2));
-                    return;
-                }
-                if (messageInputField.text == "") return;
-                EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("稍等~我來幫你挑選餐廳", Color.black, 3));
-                EventBus.Instance.Publish<newRestaurantRequestEvent>(new newRestaurantRequestEvent(messageInputField.text));
-                messageInputField.text = "";
-            }
-            else
-            {
-                EventBus.Instance.Publish<showMessageBoxEvent>(new showMessageBoxEvent("我找不到你的位置呢~ 請先點右上角的gps圖標呦", Color.black, 3));
-                return;
-            }
-        }*/
         
             if (messageInputField.text != "")
             {

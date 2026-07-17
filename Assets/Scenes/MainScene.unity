@@ -2466,8 +2466,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u521D\u4F86\u4E4D\u5230\n(0/200)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de9c281371dc95b4b9a7df99ce943d4d, type: 2}
-  m_sharedMaterial: {fileID: 1162023311060908545, guid: de9c281371dc95b4b9a7df99ce943d4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9057c9baa77b42d44a31b2b9e2f26761, type: 2}
+  m_sharedMaterial: {fileID: -4169403856331067000, guid: 9057c9baa77b42d44a31b2b9e2f26761, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5506,7 +5506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.09263775}
   m_AnchorMax: {x: 0.76875013, y: 1}
-  m_AnchoredPosition: {x: 0.31515503, y: -7.368866}
+  m_AnchoredPosition: {x: 0.3151245, y: -7.368866}
   m_SizeDelta: {x: 0.63020325, y: 15.6589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2048008225
